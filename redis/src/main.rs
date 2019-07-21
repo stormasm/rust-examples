@@ -6,14 +6,15 @@ fn fetch_an_integer() -> redis::RedisResult<isize> {
     let client = redis::Client::open("redis://127.0.0.1/")?;
     let mut con = client.get_connection()?;
     // throw away the result, just make sure it does not fail
-    let _ : () = con.set("my_key20", 20)?;
+    let _ : () = con.set("my_key120", 120)?;
     // read back the key and return it.  Because the return value
     // from the function is a result for integer this will automatically
     // convert into one.
-    con.get("my_key")
+    con.get("my_key120")
 }
 
 fn main() {
-    fetch_an_integer();
-    //println!("Hello, redis!")
+    println!("Hello, redis!");
+    let _y = fetch_an_integer();
+    println!("{:?}",_y)
 }
