@@ -1,3 +1,7 @@
+/*
+https://github.com/mitsuhiko/redis-rs/blob/master/examples/basic.rs
+*/
+
 extern crate redis;
 use redis::{transaction, Commands, PipelineCommands};
 use std::error::Error;
