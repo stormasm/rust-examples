@@ -11,3 +11,7 @@ from this [reddit](https://www.reddit.com/r/rust/comments/7hog3u/how_do_i_tell_c
 ```
 cargo run --bin basic
 ```
+
+```
+cargo run --example top
+```
