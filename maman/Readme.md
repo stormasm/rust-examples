@@ -8,8 +8,6 @@ For the write side of maman simply run maman out of the box.
 
 To do a test run follow these steps:
 
- * Run the hyper example: cre hello
-
 ```
 Run the hyper example to create a simple hello world website
 cre hello
