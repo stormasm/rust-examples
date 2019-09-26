@@ -1,4 +1,3 @@
-extern crate redis;
 use redis::Commands;
 
 fn fetch_a_string() -> redis::RedisResult<String> {
