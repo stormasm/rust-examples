@@ -1,6 +1,7 @@
 Cargo.lock
+maman/target
 redis00/target
 redis01/target
 redis02/target
 redis03/target
-/target
+target
