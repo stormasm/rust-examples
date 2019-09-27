@@ -1,7 +1,7 @@
 use redis::Commands;
 use redis::FromRedisValue;
 // use serde::{Serialize, Serializer};
-//use serde;
+use serde;
 use serde_json::value::Value;
 
 pub struct Job {
