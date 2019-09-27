@@ -19,10 +19,10 @@ fn do_something() -> redis::RedisResult<()> {
         firstname: "rick".to_string(),
         lastname: "stevens".to_string(),
     };
+
     let serialized = serde_json::to_string(&mycontact).unwrap();
     println!("Serialized: {}", serialized);
     con.set("rick", serialized)?;
-    //let json_from_redis = con.get("rick").to_string();
 
     let k: Option<String> = con.get("rick")?;
     let k1 = k.unwrap();
@@ -37,17 +37,3 @@ fn main() {
     println!("Hello, redis!");
     do_something();
 }
-
-/*
-
-fn main() {
-    println!("Hello, world!");
-
-    let mycontact = Contact { firstname: "rick".to_string(), lastname: "stevens".to_string() };
-    let serialized = serde_json::to_string(&mycontact).unwrap();
-    println!("Serialized: {}", serialized);
-
-    let deserialized: Contact = serde_json::from_str(&serialized).unwrap();
-    println!("Deserialized: {:?}", deserialized);
-}
-*/
