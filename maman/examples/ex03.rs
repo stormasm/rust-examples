@@ -22,7 +22,7 @@ fn do_something() -> redis::RedisResult<()> {
     let client = redis::Client::open("redis://127.0.0.1/")?;
     let mut con = client.get_connection()?;
 
-    let k: Option<String> = con.lindex("development:queue:maman",0)?;
+    let k: Option<String> = con.lindex("development:queue:maman", 0)?;
     let k1 = k.unwrap();
 
     let deserialized: Job = serde_json::from_str(&k1).unwrap();
