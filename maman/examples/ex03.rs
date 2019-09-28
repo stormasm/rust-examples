@@ -38,28 +38,31 @@ fn do_something() -> redis::RedisResult<()> {
     let k1 = k.unwrap();
 
     let k2: Job = serde_json::from_str(&k1).unwrap();
-    println!("Deserialized: {:?}", k2);
+    // println!("Deserialized: {:?}", k2);
 
     let args = k2.args;
     for arg in args.iter() {
-        //        let k3: Page = serde_json::from_str(arg).unwrap();
-
         let k3 = arg.as_object().unwrap();
-        println!("{:?}", k3);
+        // println!("{:?}", k3);
 
         for key in k3.iter() {
-            println!("{:?}", key)
+            // if you want to see all of the keys uncomment the next line
+            // println!("{:?}", key.0);
+
+            if key.0 == "document" {
+                println!("{:?}", key.1)
+            }
+
+            if key.0 == "url" {
+                println!("{:?}", key.1)
+            }
         }
-
-        // let k4: Page = serde_json::from_str(k3).unwrap();
-
-        //        let k3: Page = arg.as_object_mut();
     }
 
     Ok(())
 }
 
 fn main() {
-    println!("Hello, redis!");
+    println!("These are the maman keys of interest!");
     do_something();
 }
