@@ -8,7 +8,7 @@ use redis::Commands;
 use serde_json::value::Value;
 
 use std::collections::BTreeMap;
-use url::{Url};
+use url::Url;
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct Job {
@@ -42,8 +42,18 @@ fn do_something() -> redis::RedisResult<()> {
 
     let args = k2.args;
     for arg in args.iter() {
-        let k3: Page = serde_json::from_str(arg).unwrap();
-        println!("MyPage {:?}", k3)
+        //        let k3: Page = serde_json::from_str(arg).unwrap();
+
+        let k3 = arg.as_object().unwrap();
+        println!("{:?}", k3);
+
+        for key in k3.iter() {
+            println!("{:?}", key)
+        }
+
+        // let k4: Page = serde_json::from_str(k3).unwrap();
+
+        //        let k3: Page = arg.as_object_mut();
     }
 
     Ok(())
