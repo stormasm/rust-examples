@@ -19,7 +19,10 @@ fn t1() -> Result<()> {
     let v: Value = serde_json::from_str(data)?;
 
     // Access parts of the data by indexing with square brackets.
-    println!("hola {}", v);
+    println!("hola {}", v[0]);
+
+    let x1 = &v[0].as_str().unwrap();
+    println!("it works = {}", x1);
 
     Ok(())
 }
