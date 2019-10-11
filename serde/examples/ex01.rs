@@ -35,5 +35,5 @@ fn do_something() -> redis::RedisResult<()> {
 
 fn main() {
     println!("Hello, redis!");
-    do_something();
+    let _x = do_something();
 }
