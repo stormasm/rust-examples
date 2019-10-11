@@ -21,5 +21,5 @@ fn t1() -> Result<()> {
 
 fn main() {
     println!("Hello, Bill!");
-    t1();
+    let _v = t1();
 }
