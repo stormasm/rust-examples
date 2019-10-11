@@ -11,22 +11,14 @@ fn t1() -> Result<()> {
 
     let v: Value = serde_json::from_str(data)?;
 
+    // Convert the serde value to a Vector
     let vec = v.as_array().unwrap();
 
-    println!("len = {}", vec.len());
-
+    // iterate over the vector
     for i in 0..vec.len() {
-        println!("{}", vec[i]);
-
         let vx = &vec[i].as_str().unwrap();
         println!("{}", vx);
     }
-
-    // Access parts of the data by indexing with square brackets.
-    println!("with quotes {}", v[0]);
-
-    let v1 = &v[0].as_str().unwrap();
-    println!("without quotes = {}", v1);
 
     Ok(())
 }
