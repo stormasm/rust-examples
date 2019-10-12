@@ -5,7 +5,7 @@ use std::{env, fs};
 fn dir_reader() -> Result<(), Box<Error>> {
     let current_dir = Path::new("/tmp09/rust-hackernews/hn00/data/in");
     println!(
-        "Entries modified in the last 24 hours in {:?}:",
+        "Entries in {:?}:",
         current_dir
     );
 
