@@ -7,5 +7,7 @@
 
 ### References
 
-https://doc.rust-lang.org/beta/std/path/struct.PathBuf.html   
-https://doc.rust-lang.org/std/fs/fn.read_dir.html
+https://doc.rust-lang.org/std/path/index.html  
+https://doc.rust-lang.org/std/path/struct.PathBuf.html  
+ 
+https://doc.rust-lang.org/std/fs/fn.read_dir.html  
