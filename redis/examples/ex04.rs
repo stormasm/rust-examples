@@ -1,21 +1,10 @@
-use std::env;
-use std::fs;
-use std::process;
-use std::string::String;
-
 use redis::Commands;
-
-use serde_json::{Result, Value};
-
 use serde_json::json;
+use serde_json::{Result, Value};
+use std::string::String;
 
 fn string_to_json() -> Result<(Value)> {
     let data = json!(["21195107", "21190487", "21189256", "21193497", "21191588"]);
-
-    let value = json!(["notice", "the", "trailing", "comma -->",]);
-
-    // Parse the string of data into serde_json::Value.
-    //let v: Value = serde_json::from_str(&value);
     Ok(data)
 }
 
@@ -45,7 +34,6 @@ fn write_json_to_redis(json: Value) -> redis::RedisResult<()> {
 }
 
 fn main() {
-    // let json = string_to_json();
     let json = string_to_json().unwrap();
     let _x = write_json_to_redis(json);
 }
