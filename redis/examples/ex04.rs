@@ -10,7 +10,8 @@ fn string_to_json() -> Result<(Value)> {
 
 fn write_json_to_redis(json: Value) -> redis::RedisResult<()> {
     let client = redis::Client::open("redis://127.0.0.1/")?;
-    let mut con = client.get_connection()?;
+    // let mut con = client.get_connection()?;
+    let mut con = client.get_connection().expect("Failed to connect to Redis");
     // Convert the serde value to a Vector
     let vec = json.as_array().unwrap();
 
