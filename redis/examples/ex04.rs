@@ -7,21 +7,12 @@ use redis::Commands;
 
 use serde_json::{Result, Value};
 
-
 use serde_json::json;
 
 fn string_to_json() -> Result<(Value)> {
+    let data = json!(["21195107", "21190487", "21189256", "21193497", "21191588"]);
 
-    let data = json!(
-        ["21195107","21190487","21189256","21193497","21191588"]
-    );
-
-    let value = json!([
-        "notice",
-        "the",
-        "trailing",
-        "comma -->",
-    ]);
+    let value = json!(["notice", "the", "trailing", "comma -->",]);
 
     // Parse the string of data into serde_json::Value.
     //let v: Value = serde_json::from_str(&value);
@@ -38,7 +29,7 @@ fn write_json_to_redis(json: Value) -> redis::RedisResult<()> {
     for i in 0..vec.len() {
         // you must convert &str to String
         let vy = &vec[i].as_str().unwrap().to_string();
-        redis::cmd("SADD").arg("bill").arg(vy).execute(&mut con);
+        redis::cmd("SADD").arg("setbill").arg(vy).execute(&mut con);
     }
 
     let myid = String::from("999");
@@ -46,14 +37,15 @@ fn write_json_to_redis(json: Value) -> redis::RedisResult<()> {
 
     let k: Option<String> = con.get("rick")?;
     let k1 = k.unwrap();
-    redis::cmd("SADD").arg("pete").arg(k1).execute(&mut con);
+    redis::cmd("SADD").arg("setpete").arg(k1).execute(&mut con);
 
     let x55 = String::from("55");
-    redis::cmd("SADD").arg("pete").arg(x55).execute(&mut con);
+    redis::cmd("SADD").arg("setpete").arg(x55).execute(&mut con);
     Ok(())
 }
 
 fn main() {
-    let json = string_to_json();
+    // let json = string_to_json();
+    let json = string_to_json().unwrap();
     let _x = write_json_to_redis(json);
 }
