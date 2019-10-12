@@ -1,8 +1,9 @@
-use std::{env, fs};
 use std::error::Error;
+use std::path::Path;
+use std::{env, fs};
 
 fn dir_reader() -> Result<(), Box<Error>> {
-    let current_dir = env::current_dir()?;
+    let current_dir = Path::new("/tmp09/rust-hackernews/hn00/data/in");
     println!(
         "Entries modified in the last 24 hours in {:?}:",
         current_dir
@@ -11,6 +12,8 @@ fn dir_reader() -> Result<(), Box<Error>> {
     for entry in fs::read_dir(current_dir)? {
         let entry = entry?;
         let path = entry.path();
+
+        println!("{:?}", path.file_name().ok_or("No filename")?);
 
         let metadata = fs::metadata(&path)?;
         let last_modified = metadata.modified()?.elapsed()?.as_secs();
