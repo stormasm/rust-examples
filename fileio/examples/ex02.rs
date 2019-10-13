@@ -28,11 +28,19 @@ fn dir_reader() -> Result<Vec<PathBuf>, Box<dyn Error>> {
 
 fn processor() -> Result<(), Box<dyn Error>> {
     //fn processor() -> Result(_,_) {
-    let vec = dir_reader();
+    let vec = dir_reader().unwrap();
 
-    for name in vec.iter() {
+    println!("vec len = {:?}", vec.len());
+
+    for name in vec {
         // println!("{:?}", name.path.file_name().ok_or("No filename")?);
-        println!("{:?}", name.capacity());
+        // println!("{:?}", name.capacity());
+
+        // let () = name;
+
+        println!("{:?}", name.file_name().ok_or("No filename")?);
+
+        //println!("{:?}", name.file_name);
     }
 
     Ok(())
