@@ -1,6 +1,6 @@
 use std::error::Error;
+use std::fs;
 use std::path::{Path, PathBuf};
-use std::{env, fs};
 
 fn dir_reader() -> Result<Vec<PathBuf>, Box<dyn Error>> {
     // fn dir_reader() -> Result<Vec<&str>,_>  {
@@ -26,6 +26,18 @@ fn dir_reader() -> Result<Vec<PathBuf>, Box<dyn Error>> {
     Ok(vec)
 }
 
+fn processor() -> Result<(), Box<dyn Error>> {
+    //fn processor() -> Result(_,_) {
+    let vec = dir_reader();
+
+    for name in vec.iter() {
+        // println!("{:?}", name.path.file_name().ok_or("No filename")?);
+        println!("{:?}", name.capacity());
+    }
+
+    Ok(())
+}
+
 fn main() {
-    let myvec = dir_reader();
+    let _ = processor();
 }
