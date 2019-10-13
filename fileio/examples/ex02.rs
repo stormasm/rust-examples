@@ -3,12 +3,15 @@ use std::fs;
 use std::path::{Path, PathBuf};
 
 fn dir_reader() -> Result<Vec<PathBuf>, Box<dyn Error>> {
-    let mydir = Path::new("/tmp09/rust-hackernews/hn00/data/in");
-    println!("Entries in {:?}:", mydir);
+
+    let mydir = String::from("/tmp09/rust-hackernews/hn00/data/in");
+
+    let mypath = Path::new(&mydir);
+    println!("Entries in {:?}:", mypath);
 
     let mut vec: Vec<PathBuf> = Vec::new();
 
-    for entry in fs::read_dir(mydir)? {
+    for entry in fs::read_dir(mypath)? {
         let entry = entry?;
         let path = entry.path();
         //println!("{:?}", path.file_name().ok_or("No filename")?);
