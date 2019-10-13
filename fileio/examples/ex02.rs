@@ -3,7 +3,6 @@ use std::fs;
 use std::path::{Path, PathBuf};
 
 fn dir_reader(mydir: String) -> Result<Vec<PathBuf>, Box<dyn Error>> {
-
     let mypath = Path::new(&mydir);
     println!("Entries in {:?}:", mypath);
 
@@ -19,10 +18,7 @@ fn dir_reader(mydir: String) -> Result<Vec<PathBuf>, Box<dyn Error>> {
     Ok(vec)
 }
 
-fn processor() -> Result<(), Box<dyn Error>> {
-
-    let mydir = String::from("/tmp09/rust-hackernews/hn00/data/in");
-
+fn processor(mydir: String) -> Result<(), Box<dyn Error>> {
     let vec = dir_reader(mydir).unwrap();
     // println!("vec len = {:?}", vec.len());
 
@@ -34,5 +30,6 @@ fn processor() -> Result<(), Box<dyn Error>> {
 }
 
 fn main() {
-    let _ = processor();
+    let mydir = String::from("/tmp09/rust-hackernews/hn00/data/in");
+    let _ = processor(mydir);
 }
