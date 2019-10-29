@@ -2,11 +2,16 @@ use std::env;
 use std::process;
 use std::string::String;
 
+use std::fs::File;
 use std::io::prelude::*;
 use std::io::BufReader;
-use std::fs::File;
 
-fn read_file_to_buffer(filename: String) -> std::io::Result<()> {
+use std::io;
+use std::io::BufRead;
+use std::io::BufWriter;
+use std::io::Write;
+
+fn read_file_to_buffer1(filename: String) -> std::io::Result<()> {
     let f = File::open(filename)?;
     let mut reader = BufReader::new(f);
 
@@ -14,6 +19,26 @@ fn read_file_to_buffer(filename: String) -> std::io::Result<()> {
     let len = reader.read_line(&mut line)?;
     println!("First line is {} bytes long", len);
     Ok(())
+}
+
+fn read_file_to_buffer2(filename: String) {
+    let f = File::open(filename).unwrap();
+    let file = BufReader::new(&f);
+
+    //    let f = File::open(filename);
+    //    let file = BufReader::new(f);
+
+    let mut writer = BufWriter::new(io::stdout());
+    for (num, line) in file.lines().enumerate() {
+        let l = line.unwrap();
+        if num % 4 == 0 {
+            let chars: String = l.chars().skip(1).collect();
+            writeln!(writer, ">{}", chars).unwrap();
+        }
+        if num % 4 == 1 {
+            writeln!(writer, "{}", l).unwrap();
+        }
+    }
 }
 
 fn main() {
@@ -25,7 +50,7 @@ fn main() {
     let filename = &args[1];
     println!("In file {}", filename);
 
-    let _contents = read_file_to_buffer(filename.to_string());
+    let _contents = read_file_to_buffer2(filename.to_string());
 
     //println!("With text:\n{}", contents);
 }
