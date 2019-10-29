@@ -42,8 +42,8 @@ fn write_file_to_json(filename: String) {
     let mut writer = BufWriter::new(io::stdout());
     for (num, line) in file.lines().enumerate() {
         let json = line.unwrap();
-        //writeln!(writer, "{0} {1}\n", num, json).unwrap();
-        json1(json);
+        writeln!(writer, "{0} {1}\n", num, json).unwrap();
+        json1(json).expect("error converting json 1");
     }
 }
 
@@ -58,5 +58,5 @@ fn main() {
 
     let _contents = write_file_to_json(filename.to_string());
 
-    //println!("With text:\n{}", contents);
+    //println!("ok With text:\n{}", contents);
 }
