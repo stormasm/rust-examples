@@ -32,7 +32,16 @@ fn json1(data: String) -> Result<()> {
     Ok(())
 }
 
-fn write_file_to_json(filename: String) {
+fn write_line_to_json(filename: String) {
+    let f = File::open(filename).unwrap();
+    let file = BufReader::new(&f);
+    for (_num, line) in file.lines().enumerate() {
+        let json = line.unwrap();
+        json1(json).expect("error converting json 1");
+    }
+}
+
+fn write_line_to_stdout(filename: String) {
     let f = File::open(filename).unwrap();
     let file = BufReader::new(&f);
 
@@ -43,7 +52,6 @@ fn write_file_to_json(filename: String) {
     for (num, line) in file.lines().enumerate() {
         let json = line.unwrap();
         writeln!(writer, "{0} {1}\n", num, json).unwrap();
-        json1(json).expect("error converting json 1");
     }
 }
 
@@ -56,7 +64,8 @@ fn main() {
     let filename = &args[1];
     println!("In file {}", filename);
 
-    let _contents = write_file_to_json(filename.to_string());
+    let _contents1 = write_line_to_stdout(filename.to_string());
+    let _contents2 = write_line_to_json(filename.to_string());
 
     //println!("ok With text:\n{}", contents);
 }
