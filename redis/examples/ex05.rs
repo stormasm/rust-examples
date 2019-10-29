@@ -48,14 +48,13 @@ fn main() {
 
     let key2 = "key2set".to_string();
     let _x2 = write_json_to_redis_set(key2, json2);
-    /*
-        //let json3 = string_to_json1().clone().unwrap();
-        //let json4 = string_to_json2().clone().unwrap();
 
-        let key3 = "key3".to_string();
-        let _x3 = write_json_to_redis_key(key3,json1);
+    let json3 = json!(["bill", "pete", "paul"]);
+    let json4 = json!({"firstname":"mike","lastname":"roth"});
 
-        let key4 = "key4".to_string();
-        let _x4 = write_json_to_redis_key(key4,json2);
-    */
+    let key3 = "key3".to_string();
+    let _x3 = write_json_to_redis_key(key3,json3);
+
+    let key4 = "key4".to_string();
+    let _x4 = write_json_to_redis_key(key4,json4);
 }
