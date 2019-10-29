@@ -8,7 +8,6 @@ use std::process;
 use std::string::String;
 
 use std::fs::File;
-use std::io::prelude::*;
 use std::io::BufReader;
 
 use std::io;
@@ -49,7 +48,7 @@ fn main() {
     let filename = &args[1];
     println!("In file {}", filename);
 
-    let _contents = read_file_to_buffer2(filename.to_string());
+    let _contents = read_file_to_buffer1(filename.to_string());
 
     //println!("With text:\n{}", contents);
 }
