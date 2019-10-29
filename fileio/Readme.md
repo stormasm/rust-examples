@@ -3,9 +3,18 @@
 
 * deletedir deletes a directory and then recreates the exact same directory
 * ex00 read a file to a String
+
 * ex01 in development, at the moment the same as ex00
 * ex01 read a directory to a Vector of Strings which are the file names
+*
+* ex02 read file names from a directory
+* ex02a read file names from a directory
+*
+*
 * linereader reads lines from a file {j10.json} using BufReader
+*
+*
+
 
 ### References
 
