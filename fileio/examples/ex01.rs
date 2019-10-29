@@ -1,3 +1,8 @@
+/*
+*     For now this is the same as ex00
+*     Eventually I will read file names from a directory...
+*/
+
 use std::env;
 // use std::fs;
 use std::process;
