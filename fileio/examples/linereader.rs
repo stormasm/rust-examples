@@ -31,13 +31,16 @@ fn read_file_to_buffer2(filename: String) {
     let mut writer = BufWriter::new(io::stdout());
     for (num, line) in file.lines().enumerate() {
         let l = line.unwrap();
-        if num % 4 == 0 {
-            let chars: String = l.chars().skip(1).collect();
-            writeln!(writer, ">{}", chars).unwrap();
-        }
-        if num % 4 == 1 {
-            writeln!(writer, "{}", l).unwrap();
-        }
+        writeln!(writer, "{}", l).unwrap();
+        /*
+                if num % 4 == 0 {
+                    let chars: String = l.chars().skip(1).collect();
+                    writeln!(writer, ">{}", chars).unwrap();
+                }
+                if num % 4 == 1 {
+                    writeln!(writer, "{}", l).unwrap();
+                }
+        */
     }
 }
 
