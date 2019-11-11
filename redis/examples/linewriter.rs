@@ -34,9 +34,13 @@ fn json1(data: String) -> Result<()> {
 fn write_line_to_json(filename: String) {
     let f = File::open(filename).unwrap();
     let file = BufReader::new(&f);
-    for (_num, line) in file.lines().enumerate() {
+    for (num, line) in file.lines().enumerate() {
+
+        // let () = line.unwrap();
         let myline = line.unwrap();
-        println!("{}", myline);
+        println!("{} {}\n", num, myline);
+
+
         // let json = line.unwrap();
         // json1(json).expect("error converting json 1");
     }
