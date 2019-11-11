@@ -8,7 +8,24 @@ use std::io::BufReader;
 use std::io::BufRead;
 
 use serde_json::{Result, Value};
+use redis::Commands;
 
+fn write_json_to_redis_key(key: String, value: String) -> redis::RedisResult<()> {
+    let client = redis::Client::open("redis://127.0.0.1/")?;
+    // let mut con = client.get_connection()?;
+    let mut con = client.get_connection().expect("Failed to connect to Redis");
+
+    // let _: () = con.set(key, value)?;
+
+    redis::cmd("SADD").arg("linejson").arg(value).execute(&mut con);
+
+    Ok(())
+}
+
+
+
+
+/*
 fn write_json_to_redis(json: Value) -> redis::RedisResult<()> {
     let client = redis::Client::open("redis://127.0.0.1/")?;
     // let mut con = client.get_connection()?;
@@ -23,13 +40,7 @@ fn write_json_to_redis(json: Value) -> redis::RedisResult<()> {
 
     Ok(())
 }
-
-fn json1(data: String) -> Result<()> {
-    let v: Value = serde_json::from_str(&data)?;
-    //println!("{}\n", v);
-    let _x = write_json_to_redis(v);
-    Ok(())
-}
+*/
 
 fn write_line_to_json(filename: String) {
     let f = File::open(filename).unwrap();
@@ -40,6 +51,7 @@ fn write_line_to_json(filename: String) {
         let myline = line.unwrap();
         println!("{} {}\n", num, myline);
 
+        write_json_to_redis_key("bingo".to_string(),myline);
 
         // let json = line.unwrap();
         // json1(json).expect("error converting json 1");
