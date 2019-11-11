@@ -14,18 +14,15 @@ fn write_json_to_redis(json: Value) -> redis::RedisResult<()> {
     // let mut con = client.get_connection()?;
     let mut con = client.get_connection().expect("Failed to connect to Redis");
 
+    // you must convert &str to String
+    // let vy = &vec[i].as_str().unwrap().to_string();
 
-        // you must convert &str to String
-        // let vy = &vec[i].as_str().unwrap().to_string();
+    let vy = json.as_str();
 
-        let vy = json.as_str();
-
-        redis::cmd("SADD").arg("linejson").arg(vy).execute(&mut con);
+    redis::cmd("SADD").arg("linejson").arg(vy).execute(&mut con);
 
     Ok(())
 }
-
-
 
 fn json1(data: String) -> Result<()> {
     let v: Value = serde_json::from_str(&data)?;
@@ -38,8 +35,9 @@ fn write_line_to_json(filename: String) {
     let f = File::open(filename).unwrap();
     let file = BufReader::new(&f);
     for (_num, line) in file.lines().enumerate() {
-        let json = line.unwrap();
-        json1(json).expect("error converting json 1");
+        println!("{}", line.unwrap());
+        // let json = line.unwrap();
+        // json1(json).expect("error converting json 1");
     }
 }
 
