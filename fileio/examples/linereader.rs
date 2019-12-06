@@ -15,6 +15,7 @@ use std::io::BufRead;
 use std::io::BufWriter;
 use std::io::Write;
 
+#[allow(dead_code)]
 fn read_file_to_buffer1(filename: String) -> std::io::Result<()> {
     let f = File::open(filename)?;
     let mut reader = BufReader::new(f);
