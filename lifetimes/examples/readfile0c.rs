@@ -1,5 +1,3 @@
-// https://doc.rust-lang.org/reference/types/tuple.html
-
 use std::env;
 use std::process;
 use std::string::String;
@@ -22,8 +20,6 @@ fn readfile(filename: String) {
     let f = File::open(filename).unwrap();
     let file = BufReader::new(&f);
 
-    // let mut myline = String::new();
-    //
     let mut mynum: i32;
     let mut myline: String;
 
@@ -32,8 +28,6 @@ fn readfile(filename: String) {
 
     let mut writer = BufWriter::new(io::stdout());
     for (mynum, myline) in file.lines().enumerate() {
-        //mynum = &num;
-        //myline = &line.unwrap().clone();
         if is_even(mynum.try_into().unwrap()) {
             writeln!(writer, "{0}\n", mynum).unwrap();
             //writeln!(writer, "{0}\n", myline).unwrap();
@@ -44,6 +38,10 @@ fn readfile(filename: String) {
             //writeln!(writer, "{0}\n", myline).unwrap();
             vec_value.push(&myline);
         }
+    }
+
+    for key in vec_key.iter() {
+        println!("{}", key);
     }
 }
 
