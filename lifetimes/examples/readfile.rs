@@ -21,13 +21,14 @@ fn readfile(filename: String) {
     let file = BufReader::new(&f);
 
     // let mut myline = String::new();
-
+    //
     let mut writer = BufWriter::new(io::stdout());
     for (num, line) in file.lines().enumerate() {
+        let mynum = num;
         let myline = line.unwrap().clone();
         println!("{}", myline);
         if is_even(num.try_into().unwrap()) {
-            writeln!(writer, "{0}\n", num).unwrap();
+            writeln!(writer, "{0}\n", mynum).unwrap();
             // vec_key.push(&myline);
         }
         if !is_even(num.try_into().unwrap()) {
