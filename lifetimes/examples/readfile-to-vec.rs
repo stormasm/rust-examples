@@ -12,33 +12,11 @@ use std::io::Write;
 
 use std::convert::TryInto;
 
-use r2d2_redis::{r2d2, RedisConnectionManager};
-// use redis::Commands;
-use redis::{Commands, RedisResult};
-
-#[allow(dead_code)]
-fn write_json_to_redis(key: String, value: String) -> RedisResult<()> {
-    let manager = RedisConnectionManager::new("redis://localhost").unwrap();
-    let pool = r2d2::Pool::builder().build(manager).unwrap();
-
-    let pool = pool.clone();
-    let mut con = pool.get().unwrap();
-
-    let _x0 = redis::cmd("HSET")
-        .arg("hn-story-19-bak")
-        .arg(key)
-        .arg(value)
-        .query::<u64>(&mut *con)
-        .unwrap();
-
-    Ok(())
-}
-
 fn is_even(num: u32) -> bool {
     (num) & 1 == 0
 }
 
-fn read_file_to_buffer2(filename: String) {
+fn readfile_to_vec(filename: String) {
     let f = File::open(filename).unwrap();
     let file = BufReader::new(&f);
 
@@ -69,7 +47,5 @@ fn main() {
     let filename = &args[1];
     println!("In file {}", filename);
 
-    let _contents = read_file_to_buffer2(filename.to_string());
-
-    // let _ = write_json_to_redis(item_id.to_string(), item_json);
+    let _contents = readfile_to_vec(filename.to_string());
 }
