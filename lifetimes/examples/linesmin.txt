@@ -1,0 +1,6 @@
+21693415
+{"by":"dschramm","descendants":1,"id":21693415,"kids":[21693426],"score":1,"time":1575388556,"title":"Show HN: Emvi – Knowledge management platform for companies and teams","type":"story","url":"https://emvi.com/"}
+21693417
+{"by":"fjcero","descendants":0,"id":21693417,"score":1,"time":1575388561,"title":"Draw UML Diagrams with ASCII","type":"story","url":"http://stable.ascii-flow.appspot.com/#Draw"}
+21693421
+{"by":"raattgift","descendants":0,"id":21693421,"score":1,"time":1575388588,"title":"Should Comedians Have Audiences Sign NDAs?","type":"story","url":"https://www.vulture.com/2019/12/stand-up-audiences-ndas-pete-davidson.html"}
