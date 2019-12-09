@@ -76,12 +76,12 @@ fn main() {
     println!("In file {}", filename);
 
     // Instantiate a FileToVec
-    let ftv: FileToVec = FileToVec {
+    let mut ftv: FileToVec = FileToVec {
         filename: filename,
         counter: 0,
         key: &Vec::new(),
         value: &Vec::new(),
     };
 
-    let _contents = FileToVec::readfile(filename.to_string());
+    let _contents = FileToVec::readfile(&mut ftv, filename.to_string());
 }
