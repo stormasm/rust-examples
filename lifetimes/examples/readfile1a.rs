@@ -36,7 +36,7 @@ impl<'a> FileToVec<'a> {
         (num) & 1 == 0
     }
 
-    fn readfile(filename: String) {
+    fn readfile(&mut self, filename: String) {
         let f = File::open(filename).unwrap();
         let file = BufReader::new(&f);
 
@@ -48,12 +48,12 @@ impl<'a> FileToVec<'a> {
 
         let mut writer = BufWriter::new(io::stdout());
         for (mynum, myline) in file.lines().enumerate() {
-            if is_even(mynum.try_into().unwrap()) {
+            if FileToVec::is_even(mynum.try_into().unwrap()) {
                 writeln!(writer, "{0}\n", mynum).unwrap();
                 //writeln!(writer, "{0}\n", myline).unwrap();
                 vec_key.push(&mynum);
             }
-            if !is_even(mynum.try_into().unwrap()) {
+            if !FileToVec::is_even(mynum.try_into().unwrap()) {
                 writeln!(writer, "{0}\n", mynum).unwrap();
                 //writeln!(writer, "{0}\n", myline).unwrap();
                 vec_value.push(&myline);
