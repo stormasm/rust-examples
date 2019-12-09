@@ -22,13 +22,13 @@ struct FileToVec<'a> {
     value: &'a Vec<String>,
 }
 
-impl FileToVec {
+impl<'a> FileToVec<'a> {
     // Annotate lifetimes as in a standalone function.
-    fn add_one<'a>(&'a mut self) {
+    fn add_one(&'a mut self) {
         self.counter += 1;
     }
 
-    fn print<'a>(&'a self) {
+    fn print(&'a self) {
         println!("`print`: {}", self.counter);
     }
 
@@ -36,7 +36,7 @@ impl FileToVec {
         (num) & 1 == 0
     }
 
-    fn readfile<'a>(filename: String) {
+    fn readfile(filename: String) {
         let f = File::open(filename).unwrap();
         let file = BufReader::new(&f);
 
