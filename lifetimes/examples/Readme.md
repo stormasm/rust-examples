@@ -3,6 +3,10 @@ For an older version of this code with the writer in there
 [see this repo](https://github.com/stormalone/rust-examples/tree/master/lifetimes/examples)
 where the readfile1e is the latest version similar to the new readfile.
 
+To see **readfile.rs** in this repo with the debugging writer statements
+go to
+[commit sha](https://github.com/stormasm/rust-examples/tree/ccb07b03f61545f700ffd543880a768b7c6c99e0/lifetimes/examples)
+
 ##### Lifetime References
 
 [Rust by Example](https://doc.rust-lang.org/rust-by-example/scope/lifetime/methods.html)
