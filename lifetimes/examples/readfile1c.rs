@@ -52,12 +52,12 @@ impl<'a> FileToVec<'a> {
             if FileToVec::is_even(mynum.try_into().unwrap()) {
                 writeln!(writer, "{0}\n", xline).unwrap();
                 //writeln!(writer, "{0}\n", myline).unwrap();
-                //self.key.push(&mynum);
+                // self.key.push(xline);
             }
             if !FileToVec::is_even(mynum.try_into().unwrap()) {
                 writeln!(writer, "{0}\n", xline);
                 //writeln!(writer, "{0}\n", myline).unwrap();
-                //self.value.push(&myline);
+                // self.value.push(xline);
             }
         }
 
