@@ -1,3 +1,5 @@
+// https://doc.rust-lang.org/rust-by-example/scope/lifetime/methods.html
+
 use std::env;
 use std::process;
 use std::string::String;
@@ -14,25 +16,27 @@ use std::convert::TryInto;
 
 #[derive(Debug)]
 struct FileToVec<'a> {
+    counter: i32,
     filename: &'a str,
     key: &'a Vec<u32>,
     value: &'a Vec<String>,
 }
 
-impl Owner {
+impl FileToVec {
     // Annotate lifetimes as in a standalone function.
     fn add_one<'a>(&'a mut self) {
-        self.0 += 1;
+        self.counter += 1;
     }
+
     fn print<'a>(&'a self) {
-        println!("`print`: {}", self.0);
+        println!("`print`: {}", self.counter);
     }
 
     fn is_even(num: u32) -> bool {
         (num) & 1 == 0
     }
 
-    fn readfile(filename: String) {
+    fn readfile<'a>(filename: String) {
         let f = File::open(filename).unwrap();
         let file = BufReader::new(&f);
 
