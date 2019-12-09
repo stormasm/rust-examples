@@ -18,8 +18,8 @@ use std::convert::TryInto;
 struct FileToVec<'a> {
     counter: i32,
     filename: &'a str,
-    key: &'a Vec<u32>,
-    value: &'a Vec<String>,
+    key: &'a mut Vec<u32>,
+    value: &'a mut Vec<String>,
 }
 
 impl<'a> FileToVec<'a> {
@@ -50,14 +50,15 @@ impl<'a> FileToVec<'a> {
         for (mynum, myline) in file.lines().enumerate() {
             let xline = myline.unwrap().clone();
             if FileToVec::is_even(mynum.try_into().unwrap()) {
-                writeln!(writer, "{0}\n", xline).unwrap();
+                let xint = xline.parse::<u32>().unwrap();
+                writeln!(writer, "{0}\n", xint).unwrap();
                 //writeln!(writer, "{0}\n", myline).unwrap();
-                // self.key.push(xline);
+                self.key.push(xint);
             }
             if !FileToVec::is_even(mynum.try_into().unwrap()) {
                 writeln!(writer, "{0}\n", xline);
                 //writeln!(writer, "{0}\n", myline).unwrap();
-                // self.value.push(xline);
+                self.value.push(xline);
             }
         }
 
@@ -82,8 +83,8 @@ fn main() {
     let mut ftv: FileToVec = FileToVec {
         filename: filename,
         counter: 0,
-        key: &Vec::new(),
-        value: &Vec::new(),
+        key: & mut Vec::new(),
+        value: & mut Vec::new(),
     };
 
     let _contents = FileToVec::readfile(&mut ftv, filename.to_string());
