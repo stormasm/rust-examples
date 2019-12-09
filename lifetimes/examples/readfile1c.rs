@@ -48,14 +48,13 @@ impl<'a> FileToVec<'a> {
         */
         let mut writer = BufWriter::new(io::stdout());
         for (mynum, myline) in file.lines().enumerate() {
+            let xline = myline.unwrap().clone();
             if FileToVec::is_even(mynum.try_into().unwrap()) {
-                writeln!(writer, "{0}\n", mynum).unwrap();
+                writeln!(writer, "{0}\n", xline).unwrap();
                 //writeln!(writer, "{0}\n", myline).unwrap();
                 //self.key.push(&mynum);
             }
             if !FileToVec::is_even(mynum.try_into().unwrap()) {
-                let xline = myline.unwrap().clone();
-
                 writeln!(writer, "{0}\n", xline);
                 //writeln!(writer, "{0}\n", myline).unwrap();
                 //self.value.push(&myline);
