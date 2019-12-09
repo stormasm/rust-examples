@@ -61,12 +61,27 @@ impl<'a> FileToVec<'a> {
                 self.value.push(xline);
             }
         }
-
-        // println!("{}",self.key.len());
+/*
+        println!("vec len = {}",self.key.len());
 
         for i in self.key.iter() {
             println!("why {}", i);
         }
+
+        for i in self.key.len() {
+            println!("{} {}", self.key.i, self.value.i);
+        }
+
+        for (i = 0; i < self.key.len; i++) {
+            println!("{} {}", self.key.i, self.value.i);
+        }
+*/
+
+        for i in 0..self.key.len() {
+            println!("{} {}", self.key[i], self.value[i]);
+        }
+
+
     }
 }
 
