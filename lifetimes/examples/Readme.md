@@ -1,4 +1,8 @@
 
+For an older version of this code with the writer in there
+[see this repo](https://github.com/stormalone/rust-examples/tree/master/lifetimes/examples)
+where the readfile1e is the latest version similar to the new readfile.
+
 ##### Lifetime References
 
 [Rust by Example](https://doc.rust-lang.org/rust-by-example/scope/lifetime/methods.html)
