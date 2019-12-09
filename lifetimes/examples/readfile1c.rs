@@ -54,14 +54,18 @@ impl<'a> FileToVec<'a> {
                 //self.key.push(&mynum);
             }
             if !FileToVec::is_even(mynum.try_into().unwrap()) {
-                writeln!(writer, "{0}\n", mynum).unwrap();
+                let xline = myline.unwrap().clone();
+
+                writeln!(writer, "{0}\n", xline);
                 //writeln!(writer, "{0}\n", myline).unwrap();
                 //self.value.push(&myline);
             }
         }
 
-        for key in self.key.iter() {
-            println!("{}", key);
+        // println!("{}",self.key.len());
+
+        for i in self.key.iter() {
+            println!("why {}", i);
         }
     }
 }
