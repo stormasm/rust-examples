@@ -8,5 +8,8 @@ fn main() {
     s.send("Hello, world!").unwrap();
 
     // Receive the message from the channel.
-    assert_eq!(r.recv(), Ok("Hello, world!"));
+    // assert_eq!(r.recv(), Ok("Hello, world!"));
+
+    let msg = r.recv().unwrap();
+    println!("{}", msg);
 }
