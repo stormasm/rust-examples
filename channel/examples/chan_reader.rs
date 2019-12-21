@@ -15,6 +15,8 @@ use std::io::BufRead;
 use std::io::BufWriter;
 use std::io::Write;
 
+use crossbeam::crossbeam_channel::unbounded;
+
 #[allow(dead_code)]
 fn read_file_to_buffer1(filename: String) -> std::io::Result<()> {
     let f = File::open(filename)?;
@@ -28,6 +30,9 @@ fn read_file_to_buffer1(filename: String) -> std::io::Result<()> {
 
 #[allow(dead_code)]
 fn read_file_to_buffer2(filename: String) {
+    // Create a channel of unbounded capacity.
+    let (s, r) = unbounded();
+
     let f = File::open(filename).unwrap();
     let file = BufReader::new(&f);
 
@@ -37,7 +42,12 @@ fn read_file_to_buffer2(filename: String) {
     let mut writer = BufWriter::new(io::stdout());
     for (num, line) in file.lines().enumerate() {
         let l = line.unwrap();
-        writeln!(writer, "{0} {1}\n", num, l).unwrap();
+        // Send a message into the channel.
+        s.send(l).unwrap();
+        // writeln!(writer, "{0} {1}\n", num, l).unwrap();
+
+        let msg = r.recv().unwrap();
+        println!("{}", msg);
     }
 }
 
@@ -50,7 +60,7 @@ fn main() {
     let filename = &args[1];
     println!("In file {}", filename);
 
-    let contents = read_file_to_buffer1(filename.to_string());
+    let _contents = read_file_to_buffer2(filename.to_string());
 
-    println!("With text:\n{:?}", contents);
+    // println!("With text:\n{:?}", contents);
 }
