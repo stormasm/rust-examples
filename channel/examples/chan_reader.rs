@@ -22,10 +22,11 @@ fn read_file_to_buffer1(filename: String) -> std::io::Result<()> {
 
     let mut line = String::new();
     let len = reader.read_line(&mut line)?;
-    println!("First line is {} bytes long", len);
+    println!("bytes = {}\n {}", len, line);
     Ok(())
 }
 
+#[allow(dead_code)]
 fn read_file_to_buffer2(filename: String) {
     let f = File::open(filename).unwrap();
     let file = BufReader::new(&f);
@@ -49,7 +50,7 @@ fn main() {
     let filename = &args[1];
     println!("In file {}", filename);
 
-    let _contents = read_file_to_buffer2(filename.to_string());
+    let contents = read_file_to_buffer1(filename.to_string());
 
-    //println!("With text:\n{}", contents);
+    println!("With text:\n{:?}", contents);
 }
