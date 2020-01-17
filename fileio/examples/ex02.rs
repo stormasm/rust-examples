@@ -30,6 +30,6 @@ fn processor(mydir: String) -> Result<(), Box<dyn Error>> {
 }
 
 fn main() {
-    let mydir = String::from("/tmp");
+    let mydir = String::from("/tmp13");
     let _ = processor(mydir);
 }
