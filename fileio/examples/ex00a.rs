@@ -10,12 +10,11 @@ fn read_file_to_string(filename: String) -> String {
 
 fn main() {
     let args: Vec<String> = env::args().collect();
-    let mut filename = "ex00.txt";
-
-    if args.len() == 2 {
-        filename = &args[1];
+    if args.len() != 2 {
+        println!("You need to enter a filename");
+        process::exit(1);
     }
-
+    let filename = &args[1];
     println!("In file {}", filename);
 
     let contents = read_file_to_string(filename.to_string());
