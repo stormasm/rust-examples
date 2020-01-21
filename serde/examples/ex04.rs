@@ -12,9 +12,12 @@ fn t1() -> Result<()> {
     println!("{:?}", vec);
     // iterate over the vector
 
+    // let mut items = Vec::new();
+
     for i in 0..vec.len() {
-        let vx = &vec[i];
-        println!("{}", vx);
+        let vx = &vec[i].as_u64().unwrap();
+        println!("{:?}", vx);
+        // items.push(vx);
     }
 
     Ok(())
