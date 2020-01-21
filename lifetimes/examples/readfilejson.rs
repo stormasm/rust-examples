@@ -1,63 +1,29 @@
-// https://doc.rust-lang.org/rust-by-example/scope/lifetime/methods.html
 
-use std::env;
-use std::process;
-use std::string::String;
+// https://doc.rust-lang.org/std/io/trait.Read.html
 
+use std::io;
+use std::io::prelude::*;
 use std::fs::File;
-use std::io::BufReader;
 
-use std::convert::TryInto;
-use std::io::BufRead;
+fn main() -> io::Result<()> {
+    let mut f = File::open("sample1.json")?;
+    let mut buffer = [0; 10];
 
-#[derive(Debug)]
-struct FileToVec<'a> {
-    ids: &'a mut Vec<u32>,
-}
+    // read up to 10 bytes
+    f.read(&mut buffer)?;
+    println!("{:?}",buffer);
 
-impl<'a> FileToVec<'a> {
-    fn is_even(num: u32) -> bool {
-        (num) & 1 == 0
-    }
+    let mut buffer = Vec::new();
+    // read the whole file
+    f.read_to_end(&mut buffer)?;
+    println!("{:?}",buffer);
 
-    fn readfile(&mut self, filename: String) {
-        let f = File::open(filename).unwrap();
-        let file = BufReader::new(&f);
+    // read into a String, so that you don't need to do the conversion.
+    let mut buffer = String::new();
+    f.read_to_string(&mut buffer)?;
 
-        println!("{:?}",file);
+    println!("{:?}",buffer);
 
-/*
-        for (num, line) in file.lines().enumerate() {
-            let xval = line.unwrap().clone();
-            if FileToVec::is_even(num.try_into().unwrap()) {
-                let xkey = xval.parse::<u32>().unwrap();
-                self.key.push(xkey);
-            }
-            if !FileToVec::is_even(num.try_into().unwrap()) {
-                self.value.push(xval);
-            }
-        }
-
-        for i in 0..self.key.len() {
-            println!("{} {}", self.key[i], self.value[i]);
-        }
-*/
-    }
-}
-
-fn main() {
-    let args: Vec<String> = env::args().collect();
-    if args.len() != 2 {
-        println!("You need to enter a filename");
-        process::exit(1);
-    }
-    let filename = &args[1];
-    println!("In file {}", filename);
-
-    // Instantiate a FileToVec
-    let mut ftv: FileToVec = FileToVec {
-        ids: &mut Vec::new(),
-    };
-
-    let _contents = FileToVec::readfile(&mut ftv, filename.to_string());
+    // and more! See the other methods for more details.
+    Ok(())
 }
