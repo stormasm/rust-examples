@@ -21,4 +21,7 @@ fn main() {
 
     let contact1: Contact = serde_json::from_str(&jsondata).unwrap();
     println!("Deserialized: {:?}", contact1);
+
+    let myfn = contact1.firstname;
+    println!("First name {:?}", myfn);
 }
