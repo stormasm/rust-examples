@@ -11,5 +11,5 @@ fn del_hashmap_key(key: String, field: String) -> RedisResult<()> {
 }
 
 fn main() {
-    del_hashmap_key("michael".to_string(), "57".to_string());
+    let _x = del_hashmap_key("michael".to_string(), "57".to_string());
 }
