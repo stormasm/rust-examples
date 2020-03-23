@@ -71,22 +71,22 @@ fn main() {
 
     /*
         let point1 = Point {
-            measurement,
-            timestamp1,
+            "ui".to_string(),
+            time_stamp1,
             field_set1,
-            tag_set,
+            get_ctagset(),
         };
         let point2 = Point {
-            measurement,
-            timestamp2,
+            "ui".to_string(),
+            time_stamp2,
             field_set2,
-            tag_set,
+            get_ctagset(),
         };
         let point3 = Point {
-            measurement,
-            timestamp3,
+            "ui".to_string(),
+            time_stamp3,
             field_set3,
-            tag_set,
+            get_ctagset(),
         };
     */
     // Print debug struct
