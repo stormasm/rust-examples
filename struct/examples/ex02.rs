@@ -1,12 +1,5 @@
 use std::collections::HashMap;
 
-/*
-#[derive(Debug, Clone)]
-struct Ctagset {
-    fieldset: HashMap<String, String>
-}
-*/
-
 #[derive(Debug)]
 struct Point {
     measurement: String,
@@ -44,30 +37,6 @@ fn get_ctagset() -> HashMap<String, String> {
     foo.clone()
 }
 
-/*
-fn get_tagset1() -> HashMap<String, String> {
-    let mut foo = HashMap::new();
-
-    foo.insert("frequency".to_string(), "daily".to_string());
-    foo.insert("type".to_string(), "close".to_string());
-    foo
-}
-
-fn get_tagset2() -> HashMap<String, String> {
-    let mut foo = HashMap::new();
-
-    foo.insert("frequency".to_string(), "daily".to_string());
-    foo.insert("type".to_string(), "close".to_string());
-    foo
-}
-fn get_tagset3() -> HashMap<String, String> {
-    let mut foo = HashMap::new();
-
-    foo.insert("frequency".to_string(), "daily".to_string());
-    foo.insert("type".to_string(), "close".to_string());
-    foo
-}
-*/
 fn main() {
     // Create struct with field init shorthand
     let _measurement = "ui".to_string();
@@ -77,7 +46,6 @@ fn main() {
     let field_set1 = get_fieldset1();
     let field_set2 = get_fieldset2();
     let field_set3 = get_fieldset3();
-    //let tag_set = get_tagset();
 
     // Instantiate a `Point`
     let point1: Point = Point {
@@ -125,49 +93,4 @@ fn main() {
     println!("{:?}", point1);
     println!("{:?}", point2);
     println!("{:?}", point3);
-
-    /*
-    // Instantiate a `Point`
-    let point: Point = Point { x: 10.3, y: 0.4 };
-
-    // Access the fields of the point
-    println!("point coordinates: ({}, {})", point.x, point.y);
-
-    // Make a new point by using struct update syntax to use the fields of our
-    // other one
-    let bottom_right = Point { x: 5.2, ..point };
-
-    // `bottom_right.y` will be the same as `point.y` because we used that field
-    // from `point`
-    println!("second point: ({}, {})", bottom_right.x, bottom_right.y);
-
-    // Destructure the point using a `let` binding
-    let Point {
-        x: top_edge,
-        y: left_edge,
-    } = point;
-
-    let _rectangle = Rectangle {
-        // struct instantiation is an expression too
-        top_left: Point {
-            x: left_edge,
-            y: top_edge,
-        },
-        bottom_right: bottom_right,
-    };
-
-    // Instantiate a unit struct
-    let _nil = Nil;
-
-    // Instantiate a tuple struct
-    let pair = Pair(1, 0.1);
-
-    // Access the fields of a tuple struct
-    println!("pair contains {:?} and {:?}", pair.0, pair.1);
-
-    // Destructure a tuple struct
-    let Pair(integer, decimal) = pair;
-
-    println!("pair contains {:?} and {:?}", integer, decimal);
-    */
 }
