@@ -57,12 +57,13 @@ fn main() {
         println!("{:?}", point3);
     */
 
-    let vec = vec![point1, point2, point3];
-    /*
-        let vec = Vec::new();
-        vec.append(point1);
-        vec.append(point2);
-        vec.append(point3);
-    */
+    //  let vec = vec![point1, point2, point3];
+
+    let mut vec: Vec<Point> = Vec::new();
+
+    vec.push(point1);
+    vec.push(point2);
+    vec.push(point3);
+
     println!("{:?}", vec);
 }
