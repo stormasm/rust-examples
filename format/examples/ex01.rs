@@ -2,14 +2,7 @@ use std::collections::HashMap;
 use std::fmt::{self, Display, Formatter};
 
 impl Display for Point {
-    // `f` is a buffer, and this method must write the formatted string into it
     fn fmt(&self, f: &mut Formatter) -> fmt::Result {
-        // `write!` is like `format!`, but it will write the formatted string
-        // into a buffer (the first argument)
-        /*
-                write!(f, "{}{} {}{}",
-                       self.measurement, self.tagset, self.fieldset, self.timestamp)
-        */
         write!(f, "{} {}", self.measurement, self.timestamp)
     }
 }
