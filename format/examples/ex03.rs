@@ -26,7 +26,7 @@ impl Point {
         foo.clone()
     }
 
-    fn get_fieldset(self) -> Result<String, Box<dyn std::error::Error>> {
+    fn get_tagset(self) -> Result<String, Box<dyn std::error::Error>> {
         //    fn get_fieldset(self) -> String {
         let mut s = String::new();
         for (key, val) in self.tagset {
@@ -46,6 +46,6 @@ fn main() {
         fieldset: Point::set_fieldset("348000.00".to_string(), "127.21".to_string()),
         tagset: Point::set_tagset(),
     };
-    let x = point.get_fieldset().unwrap();
+    let x = point.get_tagset().unwrap();
     println!("{:?}", x);
 }
