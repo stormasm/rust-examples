@@ -1,7 +1,17 @@
 use std::collections::HashMap;
-use std::fmt::{self, Display, Formatter};
+//use std::fmt::{self, Display, Formatter};
+//use std::fmt::{self, Debug, Formatter};
+use std::fmt::{self, Formatter};
 
-impl Display for Point {
+// #[derive(Debug)]
+struct Point {
+    measurement: String,
+    timestamp: String,
+    fieldset: HashMap<String, String>,
+    tagset: HashMap<String, String>,
+}
+
+impl fmt::Debug for Point {
     // `f` is a buffer, and this method must write the formatted string into it
     fn fmt(&self, f: &mut Formatter) -> fmt::Result {
         // `write!` is like `format!`, but it will write the formatted string
@@ -12,14 +22,6 @@ impl Display for Point {
         */
         write!(f, "{} {}", self.measurement, self.timestamp)
     }
-}
-
-#[derive(Debug)]
-struct Point {
-    measurement: String,
-    timestamp: String,
-    fieldset: HashMap<String, String>,
-    tagset: HashMap<String, String>,
 }
 
 fn get_fieldset(volume: String, close: String) -> HashMap<String, String> {
