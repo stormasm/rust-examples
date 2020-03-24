@@ -60,10 +60,15 @@ fn main() {
     //  let vec = vec![point1, point2, point3];
 
     let mut vec: Vec<Point> = Vec::new();
+    /*
+        vec.push(point1);
+        vec.push(point2);
+        vec.push(point3);
+    */
 
-    vec.push(point1);
-    vec.push(point2);
-    vec.push(point3);
+    vec.insert(0, point1);
+    vec.insert(1, point2);
+    vec.insert(2, point3);
 
     println!("{:?}", vec);
 }
