@@ -1,5 +1,8 @@
 use std::collections::HashMap;
 
+use std::fmt::Write as FmtWrite;
+//use std::io::Write as IoWrite;
+
 #[derive(Debug)]
 struct Point {
     measurement: String,
@@ -23,11 +26,13 @@ impl Point {
         foo.clone()
     }
 
-    fn get_fieldset(self) -> String {
+    fn get_fieldset(self) -> Result<String, Box<dyn std::error::Error>> {
+//    fn get_fieldset(self) -> String {
+        let mut s = String::new();
         for (key, val) in self.tagset {
-            print!("{}={},", key, val);
+            write!(&mut s,"{}={},", key, val);
         }
-        "ok".to_string()
+        Ok(s)
     }
 }
 fn main() {
@@ -39,5 +44,6 @@ fn main() {
     };
 
     // println!("{:?}", point);
-    println!("{:?}", point.get_fieldset());
+    let x = point.get_fieldset().unwrap();
+    println!("{:?}", x);
 }
