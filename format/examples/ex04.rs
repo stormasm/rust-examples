@@ -1,14 +1,12 @@
 use std::collections::HashMap;
-
 use std::fmt::Write as FmtWrite;
-//use std::io::Write as IoWrite;
 
 #[derive(Debug)]
 struct Point {
     measurement: String,
-    timestamp: String,
-    fieldset: HashMap<String, String>,
     tagset: HashMap<String, String>,
+    fieldset: HashMap<String, String>,
+    timestamp: String,
 }
 
 impl Point {
@@ -26,40 +24,43 @@ impl Point {
         foo.clone()
     }
 
-    fn get_tagset(self) -> Result<String, Box<dyn std::error::Error>> {
-        //    fn get_fieldset(self) -> String {
+    fn get_lineprotocol(self) -> Result<String, Box<dyn std::error::Error>> {
         let mut s = String::new();
-        write!(&mut s, "{},", self.measurement).expect("E0");
+        write!(&mut s, "{},", self.measurement).expect("error in measurement");
+
         for (key, val) in self.tagset {
-            write!(&mut s, "{}={},", key, val).expect("E1");
+            write!(&mut s, "{}={},", key, val).expect("error in tagset");
         }
+
+        // remove the last comma from the tagset
         let mut strlen = s.len();
         let mut s1 = String::from(s);
         s1.remove(strlen - 1);
 
-        write!(&mut s1, "{}", " ".to_string()).expect("E2");
+        // add in a space between the tagset and the fieldset
+        write!(&mut s1, "{}", " ".to_string()).expect("error in space");
 
         for (key, val) in self.fieldset {
-            write!(&mut s1, "{}={},", key, val).expect("E3");
+            write!(&mut s1, "{}={},", key, val).expect("error in fieldset");
         }
 
+        // remove the last comma from the fieldset
         strlen = s1.len();
         let mut s2 = String::from(s1);
         s2.remove(strlen - 1);
 
-        write!(&mut s2, " {}", self.timestamp).expect("E4");
-
-        println!("{}", s2);
+        write!(&mut s2, " {}", self.timestamp).expect("error in timestamp");
         Ok(s2)
     }
 }
+
 fn main() {
     let point: Point = Point {
         measurement: "ui".to_string(),
-        timestamp: "1583712000".to_string(),
-        fieldset: Point::set_fieldset("348000.00".to_string(), "127.21".to_string()),
         tagset: Point::set_tagset(),
+        fieldset: Point::set_fieldset("348000.00".to_string(), "127.21".to_string()),
+        timestamp: "1583712000".to_string(),
     };
-    let x = point.get_tagset().unwrap();
+    let x = point.get_lineprotocol().unwrap();
     println!("{}", x);
 }
