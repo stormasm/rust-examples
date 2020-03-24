@@ -25,7 +25,7 @@ impl Point {
 
     fn get_fieldset(self) -> String {
         for (key, val) in self.tagset {
-            println!("key: {} val: {}", key, val);
+            print!("{}={},", key, val);
         }
         "ok".to_string()
     }
