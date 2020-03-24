@@ -22,6 +22,13 @@ impl Point {
         foo.insert("type".to_string(), "close".to_string());
         foo.clone()
     }
+
+    fn get_fieldset(self) -> String {
+        for (key, val) in self.tagset {
+            println!("key: {} val: {}", key, val);
+        }
+        "ok".to_string()
+    }
 }
 fn main() {
     let point: Point = Point {
@@ -31,5 +38,6 @@ fn main() {
         tagset: Point::set_tagset(),
     };
 
-    println!("{:?}", point);
+    // println!("{:?}", point);
+    println!("{:?}", point.get_fieldset());
 }
