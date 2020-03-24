@@ -51,8 +51,18 @@ fn main() {
         fieldset: field_set3,
         tagset: get_tagset(),
     };
+    /*
+        println!("{:?}", point1);
+        println!("{:?}", point2);
+        println!("{:?}", point3);
+    */
 
-    println!("{:?}", point1);
-    println!("{:?}", point2);
-    println!("{:?}", point3);
+    let vec = vec![point1, point2, point3];
+    /*
+        let vec = Vec::new();
+        vec.append(point1);
+        vec.append(point2);
+        vec.append(point3);
+    */
+    println!("{:?}", vec);
 }
