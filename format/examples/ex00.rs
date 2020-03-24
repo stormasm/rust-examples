@@ -70,5 +70,6 @@ fn main() {
     vec.insert(1, point2);
     vec.insert(2, point3);
 
-    println!("{:?}", vec);
+    println!("{:?}", vec[0].fieldset);
+    println!("{:?}", vec[0].fieldset["close"]);
 }
