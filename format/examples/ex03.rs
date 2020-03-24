@@ -27,12 +27,16 @@ impl Point {
     }
 
     fn get_fieldset(self) -> Result<String, Box<dyn std::error::Error>> {
-//    fn get_fieldset(self) -> String {
+        //    fn get_fieldset(self) -> String {
         let mut s = String::new();
         for (key, val) in self.tagset {
-            write!(&mut s,"{}={},", key, val);
+            write!(&mut s, "{}={},", key, val).expect("ok1");
         }
-        Ok(s)
+        let strlen = s.len();
+        let mut s1 = String::from(s);
+        s1.remove(strlen - 1);
+        println!("{}", s1);
+        Ok(s1)
     }
 }
 fn main() {
@@ -42,8 +46,6 @@ fn main() {
         fieldset: Point::set_fieldset("348000.00".to_string(), "127.21".to_string()),
         tagset: Point::set_tagset(),
     };
-
-    // println!("{:?}", point);
     let x = point.get_fieldset().unwrap();
     println!("{:?}", x);
 }
