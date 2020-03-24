@@ -47,7 +47,7 @@ impl Point {
         let mut s2 = String::from(s1);
         s2.remove(strlen - 1);
 
-
+        write!(&mut s2, " {}", self.timestamp).expect("E4");
 
         println!("{}", s2);
         Ok(s2)
@@ -61,5 +61,5 @@ fn main() {
         tagset: Point::set_tagset(),
     };
     let x = point.get_tagset().unwrap();
-    println!("{:?}", x);
+    println!("{}", x);
 }
