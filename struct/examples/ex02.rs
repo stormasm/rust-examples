@@ -58,5 +58,7 @@ fn main() {
     vec.push(point2);
     vec.push(point3);
 
-    println!("{:?}", vec);
+    for entry in vec.iter() {
+        println!("{:?}\n", entry);
+    }
 }
