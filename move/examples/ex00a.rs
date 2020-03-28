@@ -8,5 +8,6 @@ fn my_fn(arg1: &Option<Box<i32>>) -> i32 {
 
 fn main() {
     let integer = 42;
-    my_fn(&Some(Box::new(integer)));
+    let x = my_fn(&Some(Box::new(integer)));
+    println!("{}",x);
 }
