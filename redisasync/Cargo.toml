@@ -1,0 +1,10 @@
+[package]
+name = "redisasync"
+version = "0.1.0"
+authors = ["Michael Angerman <stormasm@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+redis-async = "0.6.3"
+futures = "0.3"
+tokio = { version = "0.2", features = ["rt-threaded", "macros"] }
