@@ -16,7 +16,8 @@ pub async fn send(command: &str) -> Result<String, Box<dyn Error>> {
 
     println!("{}", command);
 
-    let myiter = "set y 5678".split_whitespace();
+    // let myiter = "set y 5678".split_whitespace();
+    let myiter = command.split_whitespace();
 
     let myvec = myiter.map(|item| item).collect::<Vec<_>>();
 
