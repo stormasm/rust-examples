@@ -1,5 +1,5 @@
 [package]
-name = "redisasync"
+name = "redis_client"
 version = "0.1.0"
 authors = ["Michael Angerman <stormasm@gmail.com>"]
 edition = "2018"
