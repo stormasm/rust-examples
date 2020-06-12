@@ -1,6 +1,8 @@
-use redis_client::{send};
+use redis_client::send;
+
+// ok
 
 #[tokio::main]
 async fn main() {
-    send::rick().await;
+    send::set_test().await;
 }
