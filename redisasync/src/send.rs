@@ -48,11 +48,9 @@ pub async fn send_and_forget(command: &str) -> Result<String, Box<dyn Error>> {
     let myvec = myiter.map(|item| item).collect::<Vec<_>>();
 
     let command = resp_array![].append(myvec);
-    let wait_g = connection.send_and_forget(command);
+    connection.send_and_forget(command);
 
-    // let result_3: String = wait_g.await.expect("Cannot read result of third thing");
-
-    Ok(String::from("forget about it"))
+    Ok(String::from("todo bien"))
 }
 
 pub async fn set_test() {
