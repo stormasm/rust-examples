@@ -10,6 +10,10 @@ async fn main() {
     let res2 = send::send("get me").await;
     println!("{:?}", res2);
 
-    let res3 = send::send_and_forget("set pa mckeesport").await;
+    let res3 = send::send_and_forget("set az flagstaff").await;
     println!("{:?}", res3);
+
+    let res4 = send::send("get az").await;
+    println!("{:?}", res4);
+
 }

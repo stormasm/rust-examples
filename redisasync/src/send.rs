@@ -50,7 +50,7 @@ pub async fn send_and_forget(command: &str) -> Result<String, Box<dyn Error>> {
     let command = resp_array![].append(myvec);
     connection.send_and_forget(command);
 
-    Ok(String::from("todo bien"))
+    Ok(String::from("send and forget"))
 }
 
 pub async fn set_test() {
