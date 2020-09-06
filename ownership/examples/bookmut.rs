@@ -7,10 +7,13 @@ pub struct Book {
 
 fn main() {
     let title = "Gone with the wind".to_string();
+    let title2 = "A Harsh Reality".to_string();
     let title4 = "Petes Toothpaste";
     let book1 = Book {title};
+    let book2 = Book {title: title2};
     let mut book3 = Book {title: "Sams Lunch Box".to_string()};
     print_book(&book1);
+    print_book(&book2);
     println!("Book 3 title = {}",book3.title);
     change_title(&mut book3);
     println!("Book 3 title = {}",book3.title);
