@@ -14,8 +14,11 @@ fn main() {
     let mut book3 = Book {title: "Sams Lunch Box".to_string()};
     //title_book(&mut book3,"Bills Tea Cup");
     print_book(&book);
-    println!("{}",book.title);
-    println!("{}",book3.title);
+    //println!("{}",book.title);
+    println!("Book 3 title = {}",book3.title);
+    change_title(&mut book3);
+    println!("Book 3 title = {}",book3.title);
+    print_book(&book3);
 }
 
 fn print_book(book: &Book) {
