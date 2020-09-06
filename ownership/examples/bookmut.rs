@@ -6,10 +6,10 @@ pub struct Book {
 }
 
 fn main() {
-    let title = "Gone with the wind".to_string();
+    let title1 = "Gone with the wind".to_string();
     let title2 = "A Harsh Reality".to_string();
     let title4 = "Petes Toothpaste";
-    let book1 = Book { title };
+    let book1 = Book { title: title1 };
     let book2 = Book { title: title2 };
     let mut book3 = Book {
         title: "Sams Lunch Box".to_string(),
