@@ -3,7 +3,9 @@ extern crate pretty_env_logger;
 
 fn main() {
     pretty_env_logger::init();
-    info!("such information");
-    warn!("o_O");
-    error!("much error");
+    error!("error log");
+    warn!("warn log");
+    info!("info log");
+    debug!("debug log");
+    trace!("trace log");
 }
