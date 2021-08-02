@@ -1,0 +1,7 @@
+[package]
+name = "reedline"
+version = "0.1.0"
+edition = "2018"
+
+[dependencies]
+reedline = {git = "https://github.com/jntrnr/reedline", branch = "main"}
