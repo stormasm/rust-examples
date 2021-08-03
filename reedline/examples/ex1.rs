@@ -11,7 +11,9 @@ fn read_linebuf(linebuf: &String) -> bool {
     if iter.next().unwrap() == "read" {
         let filename = iter.next().unwrap();
         println!("{}", filename);
-        read_file(&filename);
+        let _tmp = read_file(&filename);
+        let filecontent = std::fs::read(&filename);
+        println!("{:?}", filecontent);
         return true;
     } else {
         return false;
