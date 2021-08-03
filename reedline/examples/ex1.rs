@@ -2,10 +2,17 @@ use reedline::{DefaultPrompt, Reedline, Signal};
 
 fn read_check(filename: &String) -> bool {
     let mut iter = filename.split_ascii_whitespace();
-    println!("{:?}",iter.next());
-    println!("{:?}",iter.next());    
-    println!("reading file");
-    return true
+    if iter.next().unwrap() == "read" {
+        return true;
+    } else {
+        return false;
+    }
+    /*
+        println!("{:?}",iter.next());
+        println!("{:?}",iter.next());
+        println!("reading file");
+        return true
+    */
 }
 
 fn main() -> std::io::Result<()> {
