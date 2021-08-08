@@ -11,7 +11,9 @@ fn pass_along_string(s: &mut String) -> String {
 }
 
 fn main() -> std::io::Result<()> {
-    let mut s = "john walked to the store ".into();
+    // Either one of these will work...
+    // let mut s = "john walked to the store ".into();
+    let mut s = String::from("john walked to the store ");
     let s1 = pass_along_string(&mut s);
     println!("{}", s1);
     Ok(())
