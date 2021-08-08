@@ -1,14 +1,13 @@
 use std::str::from_utf8;
 
-fn convert_slice_of_bytes_to_string_slice(v: &[u8]) {
+fn convert_slice_of_bytes_to_string_slice(v: &[u8]) -> String {
     let result = from_utf8(v).unwrap();
-    println!("{}",result);
+    result.to_string()
 }
 
-fn read_file(filename: &str) -> Result<(), Box<dyn std::error::Error>> {
+fn read_file(filename: &str) -> Result<String, Box<dyn std::error::Error>> {
     let filecontent = std::fs::read(&filename)?;
-    convert_slice_of_bytes_to_string_slice(&filecontent);
-    Ok(())
+    Ok(convert_slice_of_bytes_to_string_slice(&filecontent))
 }
 
 fn read_linebuf(linebuf: &String) -> bool {
@@ -16,9 +15,10 @@ fn read_linebuf(linebuf: &String) -> bool {
     if iter.next().unwrap() == "read" {
         let filename = iter.next().unwrap();
         println!("{}", filename);
-        let _tmp = read_file(&filename);
-        let filecontent = std::fs::read(&filename);
-        // println!("{:?}", filecontent);
+        let filecontent1 = read_file(&filename);
+        println!("{}", filecontent1.unwrap());
+        //let filecontent2 = std::fs::read(&filename);
+        //println!("{}", filecontent2);
         return true;
     } else {
         return false;
