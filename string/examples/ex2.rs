@@ -2,7 +2,9 @@
 /// And return only String's
 
 fn pass_along_string(s: &mut String) -> String {
-    let tobuy = String::from("to buy some apples");
+    // This works too...
+    // let tobuy = String::from("to buy some apples");
+    let tobuy = "to buy some apples";
     s.push_str(&tobuy);
     s.to_string()
 }
