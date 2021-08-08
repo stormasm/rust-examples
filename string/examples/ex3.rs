@@ -1,14 +1,14 @@
-/// You only want to pass along str
-/// And return String's
+/// You only want to pass along str or String
+/// And return only String's
 
 fn pass_along_str(s: &str) -> String {
-    println!("{}",s);
+    println!("{}", s);
     "to buy some apples".into()
 }
 
 fn main() -> std::io::Result<()> {
     let s = "john walked to the store ";
     let s1 = pass_along_str(s);
-    println!("{}",s1);
+    println!("{}", s1);
     Ok(())
 }
