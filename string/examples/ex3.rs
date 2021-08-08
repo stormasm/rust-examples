@@ -1,3 +1,6 @@
+/// You only want to pass along str
+/// And return String's
+
 fn pass_along_str(s: &str) -> String {
     println!("{}",s);
     "to buy some apples".into()
