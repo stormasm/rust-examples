@@ -1,0 +1,4 @@
+
+[Ways to return a String in Rust](https://stackoverflow.com/questions/43079077/proper-way-to-return-a-new-string-in-rust)
+
+[from_utf8](https://doc.rust-lang.org/std/str/fn.from_utf8.html)
