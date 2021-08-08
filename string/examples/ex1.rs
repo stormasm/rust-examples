@@ -17,8 +17,6 @@ fn read_linebuf(linebuf: &String) -> bool {
         println!("{}", filename);
         let filecontent1 = read_file(&filename);
         println!("{}", filecontent1.unwrap());
-        //let filecontent2 = std::fs::read(&filename);
-        //println!("{}", filecontent2);
         return true;
     } else {
         return false;
