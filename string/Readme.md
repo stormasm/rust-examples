@@ -9,6 +9,8 @@
 
 [The Rust book on Strings Chapter 8](https://doc.rust-lang.org/book/ch08-02-strings.html)
 
+### Definition of Literal
+
 [In programming what is a literal](https://www.google.com/search?q=in+programming+what+is+a+literal&sxsrf=ALeKk01fztw74FRPskPXsiJmW1UxQ7b4Yg%3A1628440421315&ei=ZQcQYaPfEovQ-wTQpoygAQ&oq=in+programming+what+is+a+literal&gs_lcp=Cgdnd3Mtd2l6EAMyBggAEBYQHjIGCAAQFhAeMgYIABAWEB4yBQgAEIYDOgcIABBHELADOgcIABCwAxBDOgQIIxAnOgUIABCABDoECAAQQzoKCAAQgAQQhwIQFDoOCAAQgAQQsQMQgwEQyQM6BQgAELEDOggIABCABBCxAzoHCCMQ6gIQJzoHCC4Q6gIQJzoFCAAQkQI6CwgAEIAEELEDEIMBOg4ILhCABBCxAxDHARCjAjoICC4QgAQQsQM6EQguEIAEELEDEMcBEKMCEMkDOgUIABCSAzoLCC4QgAQQsQMQgwE6BAguEEM6CwguEIAEEMcBEK8BSgQIQRgAUMW4AVix7wFgvPEBaAJwAngCgAGlAYgBtyKSAQQ1My4zmAEAoAEBsAEKyAEKwAEB&sclient=gws-wiz&ved=0ahUKEwjjpeam7aHyAhUL6J4KHVATAxQQ4dUDCA8&uact=5)
 
 A note from the above link:   
