@@ -1,4 +1,8 @@
 
+[Api: Primitive Type str in the std library](https://doc.rust-lang.org/std/primitive.str.html)
+
+[Api: std::string](https://doc.rust-lang.org/std/string/index.html)
+
 [Ways to return a String in Rust](https://stackoverflow.com/questions/43079077/proper-way-to-return-a-new-string-in-rust)
 
 [More details on String and &str](https://stackoverflow.com/questions/29781331/why-cant-i-return-an-str-value-generated-from-a-string)
