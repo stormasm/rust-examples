@@ -10,7 +10,8 @@ async fn write(s: &[u8]) -> io::Result<()> {
 
 #[tokio::main]
 async fn main() -> Result<(), reqwest::Error> {
-    let myurl = "https://hyper.rs";
+    //let myurl = "https://hyper.rs";
+    let myurl = "https://stringdb-static.org/organism_overview.html";
 
     let res = reqwest::get(myurl).await?;
 
