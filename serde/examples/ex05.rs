@@ -14,7 +14,11 @@ fn t1() -> Result<()> {
 ]
 "#;
 
-    let v: Value = serde_json::from_str(data)?;
+    let mut json1 = String::from(data);
+    println!("{:?}", json1);
+    json1.retain(|c| !c.is_whitespace());
+    println!("{:?}", json1);
+    let v: Value = serde_json::from_str(&json1)?;
     println!("{:?}", v);
 
     Ok(())
