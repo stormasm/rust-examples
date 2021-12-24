@@ -1,3 +1,4 @@
+use std::io::Write;
 use serde_json::{Result, Value};
 
 fn t1() -> Result<()> {
@@ -15,11 +16,18 @@ fn t1() -> Result<()> {
 "#;
 
     let mut json1 = String::from(data);
-    println!("{:?}", json1);
+    //println!("{:?}", json1);
     json1.retain(|c| !c.is_whitespace());
-    println!("{:?}", json1);
-    let v: Value = serde_json::from_str(&json1)?;
-    println!("{:?}", v);
+    // println!("{:?}", json1);
+
+    let stdout = std::io::stdout();
+    match stdout.lock().write_all(json1.as_bytes()) {
+        Ok(_) => (),
+        Err(err) => eprintln!("{}", err),
+    };
+
+    let _v: Value = serde_json::from_str(&json1)?;
+    //println!("{:?}", v);
 
     Ok(())
 }
