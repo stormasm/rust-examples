@@ -34,7 +34,7 @@ pub fn column_exists(input: Vec<String>, columns: Vec<String>) -> bool {
 }
 
 fn main() {
-    let input1 = vec!["blue".to_string(), "yellow".to_string()];
+    let input1 = vec!["black".to_string(), "pink".to_string()];
     let columns1 = vec!["green".to_string(), "blue".to_string()];
     let result = column_exists(input1, columns1);
     println!("Exists = {:?}", result);
