@@ -8,7 +8,7 @@ fn column_exists(input: Vec<String>, columns: Vec<String>) -> bool {
             return true;
         }
     }
-    return false;
+    false
 }
 
 fn main() {
