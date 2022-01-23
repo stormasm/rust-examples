@@ -4,7 +4,7 @@
 
 fn column_exists(input: Vec<String>, columns: Vec<String>) -> bool {
     for column in columns {
-        if let Some(index) = input.iter().position(|value| *value == column) {
+        if let Some(_index) = input.iter().position(|value| *value == column) {
             return true;
         }
     }
