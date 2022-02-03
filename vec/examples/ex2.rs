@@ -1,17 +1,29 @@
+/*
+Arbitrary Order of Values:
+    Floats
+    Ints
+    Strings
+    Bools
+*/
+
 use std::cmp::Ordering;
 
 fn main() {
     let v1 = Value::Int { val: 3 };
-    let v2 = Value::Int { val: 2 };
-    let v3 = Value::Int { val: 1 };
+    let v2 = Value::Float { val: 2.1 };
+    let v3 = Value::Bool { val: true };
     let v4 = Value::Int { val: 4 };
     let v5 = Value::String {
         val: "x".to_string(),
     };
-    let v6 = Value::Int { val: 7 };
+    let v6 = Value::Bool { val: false };
     let v7 = Value::Int { val: 8 };
-    let v8 = Value::Int { val: 10 };
-    let v9 = Value::Int { val: 9 };
+
+    let v8 = Value::String {
+        val: "a".to_string(),
+    };
+
+    let v9 = Value::Float { val: 9.2 };
 
     let mut vec = vec![v1, v2, v3, v4, v5, v6, v7, v8, v9];
     vec.sort_by(|a, b| process(a, b));
@@ -35,9 +47,29 @@ pub fn process(left: &Value, right: &Value) -> std::cmp::Ordering {
             CompareValues::Booleans(*left, *right).compare()
         }
 
-        (Value::Int { val: left, .. }, Value::String { val: right, .. }) => Ordering::Less,
+        // Floats will always come before Ints
+        (Value::Float { val: left, .. }, Value::Int { val: right, .. }) => Ordering::Less,
+        (Value::Int { val: left, .. }, Value::Float { val: right, .. }) => Ordering::Greater,
 
+        // Floats will always come before Strings
+        (Value::Float { val: left, .. }, Value::String { val: right, .. }) => Ordering::Less,
+        (Value::String { val: left, .. }, Value::Float { val: right, .. }) => Ordering::Greater,
+
+        // Floats will always come before Bools
+        (Value::Float { val: left, .. }, Value::Bool { val: right, .. }) => Ordering::Less,
+        (Value::Bool { val: left, .. }, Value::Float { val: right, .. }) => Ordering::Greater,
+
+        // Ints will always come before strings
+        (Value::Int { val: left, .. }, Value::String { val: right, .. }) => Ordering::Less,
         (Value::String { val: left, .. }, Value::Int { val: right, .. }) => Ordering::Greater,
+
+        // Ints will always come before Bools
+        (Value::Int { val: left, .. }, Value::Bool { val: right, .. }) => Ordering::Less,
+        (Value::Bool { val: left, .. }, Value::Int { val: right, .. }) => Ordering::Greater,
+
+        // Strings will always come before Bools
+        (Value::String { val: left, .. }, Value::Bool { val: right, .. }) => Ordering::Less,
+        (Value::Bool { val: left, .. }, Value::String { val: right, .. }) => Ordering::Greater,
 
         _ => {
             /*
