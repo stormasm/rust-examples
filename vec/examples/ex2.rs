@@ -58,45 +58,28 @@ pub fn process(left: &Value, right: &Value) -> std::cmp::Ordering {
         }
 
         // Floats will always come before Ints
-        (Value::Float { val: left, .. }, Value::Int { val: right, .. }) => Ordering::Less,
-        (Value::Int { val: left, .. }, Value::Float { val: right, .. }) => Ordering::Greater,
+        (Value::Float { .. }, Value::Int { .. }) => Ordering::Less,
+        (Value::Int { .. }, Value::Float { .. }) => Ordering::Greater,
 
         // Floats will always come before Strings
-        (Value::Float { val: left, .. }, Value::String { val: right, .. }) => Ordering::Less,
-        (Value::String { val: left, .. }, Value::Float { val: right, .. }) => Ordering::Greater,
+        (Value::Float { .. }, Value::String { .. }) => Ordering::Less,
+        (Value::String { .. }, Value::Float { .. }) => Ordering::Greater,
 
         // Floats will always come before Bools
-        (Value::Float { val: left, .. }, Value::Bool { val: right, .. }) => Ordering::Less,
-        (Value::Bool { val: left, .. }, Value::Float { val: right, .. }) => Ordering::Greater,
+        (Value::Float { .. }, Value::Bool { .. }) => Ordering::Less,
+        (Value::Bool { .. }, Value::Float { .. }) => Ordering::Greater,
 
         // Ints will always come before strings
-        (Value::Int { val: left, .. }, Value::String { val: right, .. }) => Ordering::Less,
-        (Value::String { val: left, .. }, Value::Int { val: right, .. }) => Ordering::Greater,
+        (Value::Int { .. }, Value::String { .. }) => Ordering::Less,
+        (Value::String { .. }, Value::Int { .. }) => Ordering::Greater,
 
         // Ints will always come before Bools
-        (Value::Int { val: left, .. }, Value::Bool { val: right, .. }) => Ordering::Less,
-        (Value::Bool { val: left, .. }, Value::Int { val: right, .. }) => Ordering::Greater,
+        (Value::Int { .. }, Value::Bool { .. }) => Ordering::Less,
+        (Value::Bool { .. }, Value::Int { .. }) => Ordering::Greater,
 
         // Strings will always come before Bools
-        (Value::String { val: left, .. }, Value::Bool { val: right, .. }) => Ordering::Less,
-        (Value::Bool { val: left, .. }, Value::String { val: right, .. }) => Ordering::Greater,
-
-        _ => {
-            /*
-            let xleft = match left.as_string() {
-                Ok(vleft) => vleft,
-                Err(_) => "coerce_compare_left".to_string(),
-            };
-
-            println!("{:?}", xleft);
-
-            let yright = match right.as_string() {
-                Ok(vright) => vright,
-                Err(_) => "coerce_compare_left".to_string(),
-            };
-            */
-            Ordering::Equal
-        }
+        (Value::String { .. }, Value::Bool { .. }) => Ordering::Less,
+        (Value::Bool { .. }, Value::String { .. }) => Ordering::Greater,
     }
 }
 
