@@ -9,21 +9,31 @@ Arbitrary Order of Values:
 use std::cmp::Ordering;
 
 fn main() {
-    let v1 = Value::Int { val: 3 };
-    let v2 = Value::Float { val: 2.1 };
-    let v3 = Value::Bool { val: true };
-    let v4 = Value::Int { val: 4 };
+    let s1 = Span { start: 0, end: 1 };
+
+    let v1 = Value::Int { val: 3, span: s1 };
+    let v2 = Value::Float { val: 2.1, span: s1 };
+    let v3 = Value::Bool {
+        val: true,
+        span: s1,
+    };
+    let v4 = Value::Int { val: 4, span: s1 };
     let v5 = Value::String {
         val: "x".to_string(),
+        span: s1,
     };
-    let v6 = Value::Bool { val: false };
-    let v7 = Value::Int { val: 8 };
+    let v6 = Value::Bool {
+        val: false,
+        span: s1,
+    };
+    let v7 = Value::Int { val: 8, span: s1 };
 
     let v8 = Value::String {
         val: "a".to_string(),
+        span: s1,
     };
 
-    let v9 = Value::Float { val: 9.2 };
+    let v9 = Value::Float { val: 9.2, span: s1 };
 
     let mut vec = vec![v1, v2, v3, v4, v5, v6, v7, v8, v9];
     vec.sort_by(|a, b| process(a, b));
@@ -92,10 +102,16 @@ pub fn process(left: &Value, right: &Value) -> std::cmp::Ordering {
 
 #[derive(Debug)]
 pub enum Value {
-    Bool { val: bool },
-    Int { val: i64 },
-    Float { val: f64 },
-    String { val: String },
+    Bool { val: bool, span: Span },
+    Int { val: i64, span: Span },
+    Float { val: f64, span: Span },
+    String { val: String, span: Span },
+}
+
+#[derive(Clone, Copy, Debug)]
+pub struct Span {
+    pub start: usize,
+    pub end: usize,
 }
 
 #[derive(Debug)]
