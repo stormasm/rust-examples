@@ -5,7 +5,9 @@ fn main() {
     let v2 = Value::Int { val: 2 };
     let v3 = Value::Int { val: 1 };
     let v4 = Value::Int { val: 4 };
-    let v5 = Value::Int { val: 5 };
+    let v5 = Value::String {
+        val: "x".to_string(),
+    };
     let v6 = Value::Int { val: 7 };
     let v7 = Value::Int { val: 8 };
     let v8 = Value::Int { val: 10 };
@@ -17,7 +19,7 @@ fn main() {
 }
 
 pub fn process(left: &Value, right: &Value) -> std::cmp::Ordering {
-    println!("{:?} {:?}", left, right);
+    //println!("{:?} {:?}", left, right);
 
     match (left, right) {
         (Value::Float { val: left, .. }, Value::Float { val: right, .. }) => {
@@ -32,6 +34,11 @@ pub fn process(left: &Value, right: &Value) -> std::cmp::Ordering {
         (Value::Bool { val: left, .. }, Value::Bool { val: right, .. }) => {
             CompareValues::Booleans(*left, *right).compare()
         }
+
+        (Value::Int { val: left, .. }, Value::String { val: right, .. }) => Ordering::Less,
+
+        (Value::String { val: left, .. }, Value::Int { val: right, .. }) => Ordering::Greater,
+
         _ => {
             /*
             let xleft = match left.as_string() {
