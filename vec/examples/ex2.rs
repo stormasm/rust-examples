@@ -1,3 +1,5 @@
+use std::cmp::Ordering;
+
 fn main() {
     let v1 = Value::Int { val: 3 };
     let v2 = Value::Int { val: 2 };
@@ -16,7 +18,37 @@ fn main() {
 
 pub fn process(left: &Value, right: &Value) -> std::cmp::Ordering {
     println!("{:?} {:?}", left, right);
-    std::cmp::Ordering::Less
+
+    match (left, right) {
+        (Value::Float { val: left, .. }, Value::Float { val: right, .. }) => {
+            CompareValues::Floats(*left, *right).compare()
+        }
+        (Value::Int { val: left, .. }, Value::Int { val: right, .. }) => {
+            CompareValues::Ints(*left, *right).compare()
+        }
+        (Value::String { val: left, .. }, Value::String { val: right, .. }) => {
+            CompareValues::String(left.clone(), right.clone()).compare()
+        }
+        (Value::Bool { val: left, .. }, Value::Bool { val: right, .. }) => {
+            CompareValues::Booleans(*left, *right).compare()
+        }
+        _ => {
+            /*
+            let xleft = match left.as_string() {
+                Ok(vleft) => vleft,
+                Err(_) => "coerce_compare_left".to_string(),
+            };
+
+            println!("{:?}", xleft);
+
+            let yright = match right.as_string() {
+                Ok(vright) => vright,
+                Err(_) => "coerce_compare_left".to_string(),
+            };
+            */
+            Ordering::Equal
+        }
+    }
 }
 
 #[derive(Debug)]
@@ -25,4 +57,32 @@ pub enum Value {
     Int { val: i64 },
     Float { val: f64 },
     String { val: String },
+}
+
+#[derive(Debug)]
+pub enum CompareValues {
+    Ints(i64, i64),
+    Floats(f64, f64),
+    String(String, String),
+    Booleans(bool, bool),
+}
+
+impl CompareValues {
+    pub fn compare(&self) -> std::cmp::Ordering {
+        match self {
+            CompareValues::Ints(left, right) => left.cmp(right),
+            CompareValues::Floats(left, right) => process_floats(left, right),
+            CompareValues::String(left, right) => left.cmp(right),
+            CompareValues::Booleans(left, right) => left.cmp(right),
+        }
+    }
+}
+
+pub fn process_floats(left: &f64, right: &f64) -> std::cmp::Ordering {
+    let result = left.partial_cmp(right);
+    match result {
+        Some(Ordering::Greater) => Ordering::Greater,
+        Some(Ordering::Less) => Ordering::Less,
+        _ => Ordering::Equal,
+    }
 }
