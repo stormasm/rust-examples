@@ -37,9 +37,13 @@ fn main() {
 
     let mut vec = vec![v1, v2, v3, v4, v5, v6, v7, v8, v9];
 
-    if let values = vec.windows(2).map(|elem| process_check(&elem[0], &elem[1])) {
-        println!("{:?}", values);
-    }
+    // let v2: Vec<_> = v1.iter().map(|x| x + 1).collect();
+
+    let values: Vec<_> = vec
+        .windows(2)
+        .map(|elem| process_check(&elem[0], &elem[1]))
+        .collect();
+    println!("{:?}", values);
 
     vec.sort_by(|a, b| process(a, b));
     println!("{:?}", vec);
