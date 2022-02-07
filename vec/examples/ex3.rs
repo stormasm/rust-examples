@@ -34,8 +34,10 @@ fn main() {
     };
 
     let v9 = Value::Float { val: 9.2, span: s1 };
+    let v10 = Value::Float { val: 2.1, span: s1 };
+    let v11 = Value::Int { val: 8, span: s1 };
 
-    let mut vec = vec![v1, v2, v3, v4, v5, v6, v7, v8, v9];
+    let mut vec = vec![v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11];
 
     // let v2: Vec<_> = v1.iter().map(|x| x + 1).collect();
 
@@ -43,7 +45,7 @@ fn main() {
         .windows(2)
         .map(|elem| process_check(&elem[0], &elem[1]))
         .collect();
-    println!("{:?}", values);
+    println!("values: {:?}", values);
 
     vec.sort_by(|a, b| process(a, b));
     println!("{:?}", vec);
@@ -51,7 +53,7 @@ fn main() {
 
 // return true if there is no error
 pub fn process_check(left: &Value, right: &Value) -> bool {
-    //println!("{:?} {:?}", left, right);
+    println!("{:?} {:?}", left, right);
 
     let result = match (left, right) {
         (Value::Float { val: left, .. }, Value::Float { val: right, .. }) => {
@@ -92,7 +94,7 @@ pub fn process_check(left: &Value, right: &Value) -> bool {
         (Value::Bool { .. }, Value::String { .. }) => Ordering::Greater,
     };
 
-    println!("{:?}", result);
+    println!("process_check result: {:?}\n", result);
     true
 }
 
