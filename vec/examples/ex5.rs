@@ -10,7 +10,8 @@ fn main() {
     let v1 = Value::Int { val: 3 };
     let v2 = Value::Int { val: 2 };
     let v3 = Value::Int { val: 4 };
-    let vec = vec![v1, v2, v3];
+    let v4 = Value::Bool { val: true };
+    let vec = vec![v1, v2, v3, v4];
 
     let values: Vec<_> = vec
         .windows(2)
@@ -35,6 +36,8 @@ pub fn process_check(left: &Value, right: &Value) -> bool {
         // Ints will always come before strings
         (Value::Int { .. }, Value::String { .. }) => Some(Ordering::Less),
         (Value::String { .. }, Value::Int { .. }) => Some(Ordering::Greater),
+
+        _ => None,
     };
 
     println!("process_check result: {:?}\n", result);
@@ -45,6 +48,7 @@ pub fn process_check(left: &Value, right: &Value) -> bool {
 pub enum Value {
     Int { val: i64 },
     String { val: String },
+    Bool { val: bool },
 }
 
 #[derive(Debug)]
