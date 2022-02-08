@@ -21,6 +21,12 @@ fn main() {
         .collect();
 
     println!("values: {:?}", values);
+
+    if values.contains(&false) {
+        println!("fail")
+    } else {
+        println!("pass");
+    }
 }
 
 // return true if there is no error
