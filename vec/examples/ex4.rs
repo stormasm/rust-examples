@@ -48,8 +48,13 @@ fn main() {
         .collect();
     println!("values: {:?}", values);
 
-    vec.sort_by(|a, b| process(a, b));
-    println!("{:?}", vec);
+    if values.contains(&false) {
+        println!("fail")
+    } else {
+        println!("pass");
+        vec.sort_by(|a, b| process(a, b));
+        println!("{:?}", vec);
+    }
 }
 
 // return true if there is no error
