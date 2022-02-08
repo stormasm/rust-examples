@@ -7,7 +7,6 @@ and inside this function is a match arm which tests conditions.
 // use std::cmp::Ordering;
 
 fn main() {
-
     let v1 = Value::Int { val: 3 };
     let v2 = Value::Int { val: 2 };
     let v3 = Value::Int { val: 4 };
@@ -35,22 +34,22 @@ pub fn process_check(left: &Value, right: &Value) -> bool {
     true
 }
 
-
 #[derive(Debug)]
 pub enum Value {
     Int { val: i64 },
 }
 
-
 #[derive(Debug)]
 pub enum CompareValues {
     Ints(i64, i64),
+    None,
 }
 
 impl CompareValues {
-    pub fn compare(&self) -> std::cmp::Ordering {
+    pub fn compare(&self) -> Option<std::cmp::Ordering> {
         match self {
-            CompareValues::Ints(left, right) => left.cmp(right),
+            CompareValues::Ints(left, right) => Some(left.cmp(right)),
+            _ => None,
         }
     }
 }
