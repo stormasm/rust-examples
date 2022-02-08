@@ -7,11 +7,12 @@ and inside this function is a match arm which tests conditions.
 use std::cmp::Ordering;
 
 fn main() {
-    let v1 = Value::Int { val: 3 };
+    let v1 = Value::Int { val: 5 };
     let v2 = Value::Int { val: 2 };
-    let v3 = Value::Int { val: 4 };
-    let v4 = Value::Bool { val: true };
-    let vec = vec![v1, v2, v3, v4];
+    let v3 = Value::Int { val: 2 };
+    let v4 = Value::Int { val: 4 };
+    let v5 = Value::Bool { val: true };
+    let vec = vec![v1, v2, v3, v4, v5];
 
     let values: Vec<_> = vec
         .windows(2)
