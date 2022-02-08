@@ -33,7 +33,7 @@ fn main() {
         span: s1,
     };
 
-    let v9 = Value::Filesize{ val: 41, span: s1 };
+    let v9 = Value::Filesize { val: 41, span: s1 };
     let v10 = Value::Float { val: 9.2, span: s1 };
     let v11 = Value::Float { val: 2.1, span: s1 };
     let v12 = Value::Int { val: 8, span: s1 };
