@@ -12,7 +12,8 @@ fn main() {
     let v3 = Value::Int { val: 2 };
     let v4 = Value::Int { val: 4 };
     let v5 = Value::Bool { val: true };
-    let vec = vec![v1, v2, v3, v4, v5];
+    let v6 = Value::Int { val: 1 };
+    let vec = vec![v1, v2, v3, v4, v5, v6];
 
     let values: Vec<_> = vec
         .windows(2)
@@ -42,6 +43,10 @@ pub fn process_check(left: &Value, right: &Value) -> bool {
     };
 
     println!("process_check result: {:?}\n", result);
+
+    if result == None {
+        return false;
+    }
     true
 }
 
