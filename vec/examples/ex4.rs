@@ -38,7 +38,7 @@ fn main() {
     let v11 = Value::Float { val: 2.1, span: s1 };
     let v12 = Value::Int { val: 8, span: s1 };
 
-    let vec = vec![v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12];
+    let mut vec = vec![v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12];
 
     // let v2: Vec<_> = v1.iter().map(|x| x + 1).collect();
 
@@ -47,10 +47,9 @@ fn main() {
         .map(|elem| process_check(&elem[0], &elem[1]))
         .collect();
     println!("values: {:?}", values);
-    /*
-        vec.sort_by(|a, b| process(a, b));
-        println!("{:?}", vec);
-    */
+
+    vec.sort_by(|a, b| process(a, b));
+    println!("{:?}", vec);
 }
 
 // return true if there is no error
@@ -59,19 +58,16 @@ pub fn process_check(left: &Value, right: &Value) -> bool {
 
     let result = match (left, right) {
         (Value::Float { val: left, .. }, Value::Float { val: right, .. }) => {
-            CompareValues::Floats(*left, *right).compare()
+            CompareValues::Floats(*left, *right).compare_check()
         }
         (Value::Int { val: left, .. }, Value::Int { val: right, .. }) => {
-            CompareValues::Ints(*left, *right).compare()
+            CompareValues::Ints(*left, *right).compare_check()
         }
         (Value::String { val: left, .. }, Value::String { val: right, .. }) => {
-            CompareValues::String(left.clone(), right.clone()).compare()
+            CompareValues::String(left.clone(), right.clone()).compare_check()
         }
         (Value::Bool { val: left, .. }, Value::Bool { val: right, .. }) => {
-            CompareValues::Booleans(*left, *right).compare()
-        }
-        (Value::Filesize { val: left, .. }, Value::Filesize { val: right, .. }) => {
-            CompareValues::Filesize(*left, *right).compare()
+            CompareValues::Booleans(*left, *right).compare_check()
         }
 
         // Floats will always come before Ints
@@ -108,7 +104,6 @@ pub fn process_check(left: &Value, right: &Value) -> bool {
     true
 }
 
-/*
 pub fn process(left: &Value, right: &Value) -> std::cmp::Ordering {
     //println!("{:?} {:?}", left, right);
 
@@ -124,9 +119,6 @@ pub fn process(left: &Value, right: &Value) -> std::cmp::Ordering {
         }
         (Value::Bool { val: left, .. }, Value::Bool { val: right, .. }) => {
             CompareValues::Booleans(*left, *right).compare()
-        }
-        (Value::Filesize { val: left, .. }, Value::Filesize { val: right, .. }) => {
-            CompareValues::Filesize(*left, *right).compare()
         }
 
         // Floats will always come before Ints
@@ -152,9 +144,9 @@ pub fn process(left: &Value, right: &Value) -> std::cmp::Ordering {
         // Strings will always come before Bools
         (Value::String { .. }, Value::Bool { .. }) => Ordering::Less,
         (Value::Bool { .. }, Value::String { .. }) => Ordering::Greater,
+        _ => Ordering::Equal,
     }
 }
-*/
 
 #[derive(Debug)]
 pub enum Value {
@@ -177,18 +169,26 @@ pub enum CompareValues {
     Floats(f64, f64),
     String(String, String),
     Booleans(bool, bool),
-    Filesize(i64, i64),
     None,
 }
 
 impl CompareValues {
-    pub fn compare(&self) -> Option<std::cmp::Ordering> {
+    pub fn compare_check(&self) -> Option<std::cmp::Ordering> {
         match self {
             CompareValues::Ints(left, right) => Some(left.cmp(right)),
             CompareValues::Floats(left, right) => Some(process_floats(left, right)),
             CompareValues::String(left, right) => Some(left.cmp(right)),
             CompareValues::Booleans(left, right) => Some(left.cmp(right)),
             _ => None,
+        }
+    }
+    pub fn compare(&self) -> std::cmp::Ordering {
+        match self {
+            CompareValues::Ints(left, right) => left.cmp(right),
+            CompareValues::Floats(left, right) => process_floats(left, right),
+            CompareValues::String(left, right) => left.cmp(right),
+            CompareValues::Booleans(left, right) => left.cmp(right),
+            _ => Ordering::Equal,
         }
     }
 }
