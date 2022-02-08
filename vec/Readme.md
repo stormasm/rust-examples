@@ -5,5 +5,7 @@
 
 * ex3 moving on to lots more cases
 
+* ex5 so I got ex5 working first and then migrated the code logic to ex4
+
 * ex4 add in the wildcard to catch the errors to simulate case not covered
 * ex4 the match arm returns a Result instead of the Ordering
