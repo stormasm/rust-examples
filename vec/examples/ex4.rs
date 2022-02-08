@@ -38,7 +38,7 @@ fn main() {
     let v11 = Value::Float { val: 2.1, span: s1 };
     let v12 = Value::Int { val: 8, span: s1 };
 
-    let mut vec = vec![v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12];
+    let vec = vec![v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12];
 
     // let v2: Vec<_> = v1.iter().map(|x| x + 1).collect();
 
@@ -47,9 +47,10 @@ fn main() {
         .map(|elem| process_check(&elem[0], &elem[1]))
         .collect();
     println!("values: {:?}", values);
-
-    vec.sort_by(|a, b| process(a, b));
-    println!("{:?}", vec);
+    /*
+        vec.sort_by(|a, b| process(a, b));
+        println!("{:?}", vec);
+    */
 }
 
 // return true if there is no error
@@ -74,34 +75,40 @@ pub fn process_check(left: &Value, right: &Value) -> bool {
         }
 
         // Floats will always come before Ints
-        (Value::Float { .. }, Value::Int { .. }) => Ordering::Less,
-        (Value::Int { .. }, Value::Float { .. }) => Ordering::Greater,
+        (Value::Float { .. }, Value::Int { .. }) => Some(Ordering::Less),
+        (Value::Int { .. }, Value::Float { .. }) => Some(Ordering::Greater),
 
         // Floats will always come before Strings
-        (Value::Float { .. }, Value::String { .. }) => Ordering::Less,
-        (Value::String { .. }, Value::Float { .. }) => Ordering::Greater,
+        (Value::Float { .. }, Value::String { .. }) => Some(Ordering::Less),
+        (Value::String { .. }, Value::Float { .. }) => Some(Ordering::Greater),
 
         // Floats will always come before Bools
-        (Value::Float { .. }, Value::Bool { .. }) => Ordering::Less,
-        (Value::Bool { .. }, Value::Float { .. }) => Ordering::Greater,
+        (Value::Float { .. }, Value::Bool { .. }) => Some(Ordering::Less),
+        (Value::Bool { .. }, Value::Float { .. }) => Some(Ordering::Greater),
 
         // Ints will always come before strings
-        (Value::Int { .. }, Value::String { .. }) => Ordering::Less,
-        (Value::String { .. }, Value::Int { .. }) => Ordering::Greater,
+        (Value::Int { .. }, Value::String { .. }) => Some(Ordering::Less),
+        (Value::String { .. }, Value::Int { .. }) => Some(Ordering::Greater),
 
         // Ints will always come before Bools
-        (Value::Int { .. }, Value::Bool { .. }) => Ordering::Less,
-        (Value::Bool { .. }, Value::Int { .. }) => Ordering::Greater,
+        (Value::Int { .. }, Value::Bool { .. }) => Some(Ordering::Less),
+        (Value::Bool { .. }, Value::Int { .. }) => Some(Ordering::Greater),
 
         // Strings will always come before Bools
-        (Value::String { .. }, Value::Bool { .. }) => Ordering::Less,
-        (Value::Bool { .. }, Value::String { .. }) => Ordering::Greater,
-    };
+        (Value::String { .. }, Value::Bool { .. }) => Some(Ordering::Less),
+        (Value::Bool { .. }, Value::String { .. }) => Some(Ordering::Greater),
 
+        _ => None,
+    };
     println!("process_check result: {:?}\n", result);
+
+    if result == None {
+        return false;
+    }
     true
 }
 
+/*
 pub fn process(left: &Value, right: &Value) -> std::cmp::Ordering {
     //println!("{:?} {:?}", left, right);
 
@@ -147,6 +154,7 @@ pub fn process(left: &Value, right: &Value) -> std::cmp::Ordering {
         (Value::Bool { .. }, Value::String { .. }) => Ordering::Greater,
     }
 }
+*/
 
 #[derive(Debug)]
 pub enum Value {
@@ -170,15 +178,17 @@ pub enum CompareValues {
     String(String, String),
     Booleans(bool, bool),
     Filesize(i64, i64),
+    None,
 }
 
 impl CompareValues {
-    pub fn compare(&self) -> std::cmp::Ordering {
+    pub fn compare(&self) -> Option<std::cmp::Ordering> {
         match self {
-            CompareValues::Ints(left, right) => left.cmp(right),
-            CompareValues::Floats(left, right) => process_floats(left, right),
-            CompareValues::String(left, right) => left.cmp(right),
-            CompareValues::Booleans(left, right) => left.cmp(right),
+            CompareValues::Ints(left, right) => Some(left.cmp(right)),
+            CompareValues::Floats(left, right) => Some(process_floats(left, right)),
+            CompareValues::String(left, right) => Some(left.cmp(right)),
+            CompareValues::Booleans(left, right) => Some(left.cmp(right)),
+            _ => None,
         }
     }
 }
