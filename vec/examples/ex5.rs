@@ -4,7 +4,7 @@ false if there in an error.
 and inside this function is a match arm which tests conditions.
 */
 
-// use std::cmp::Ordering;
+use std::cmp::Ordering;
 
 fn main() {
     let v1 = Value::Int { val: 3 };
@@ -28,6 +28,13 @@ pub fn process_check(left: &Value, right: &Value) -> bool {
         (Value::Int { val: left, .. }, Value::Int { val: right, .. }) => {
             CompareValues::Ints(*left, *right).compare()
         }
+        (Value::String { val: left, .. }, Value::String { val: right, .. }) => {
+            CompareValues::String(left.clone(), right.clone()).compare()
+        }
+
+        // Ints will always come before strings
+        (Value::Int { .. }, Value::String { .. }) => Some(Ordering::Less),
+        (Value::String { .. }, Value::Int { .. }) => Some(Ordering::Greater),
     };
 
     println!("process_check result: {:?}\n", result);
@@ -37,11 +44,13 @@ pub fn process_check(left: &Value, right: &Value) -> bool {
 #[derive(Debug)]
 pub enum Value {
     Int { val: i64 },
+    String { val: String },
 }
 
 #[derive(Debug)]
 pub enum CompareValues {
     Ints(i64, i64),
+    String(String, String),
     None,
 }
 
