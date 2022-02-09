@@ -13,3 +13,7 @@
 
 * ex4 add in the wildcard to catch the Option None to simulate case not covered
 * ex4 the match arm returns an Option instead of the Ordering
+
+##### Then I started working on ex5 error processing and introduced
+
+* ex5a
