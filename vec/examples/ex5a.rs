@@ -9,25 +9,25 @@ use std::error::Error;
 use std::fmt;
 
 #[derive(Debug)]
-pub struct MyError {
+pub struct ValueError {
     details: String,
 }
 
-impl MyError {
-    fn new(msg: &str) -> MyError {
-        MyError {
+impl ValueError {
+    fn new(msg: &str) -> ValueError {
+        ValueError {
             details: msg.to_string(),
         }
     }
 }
 
-impl fmt::Display for MyError {
+impl fmt::Display for ValueError {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.details)
     }
 }
 
-impl Error for MyError {
+impl Error for ValueError {
     fn description(&self) -> &str {
         &self.details
     }
@@ -58,7 +58,7 @@ fn main() {
 }
 
 // return true if there is no error
-pub fn process_check(left: &Value, right: &Value) -> Result<bool, MyError> {
+pub fn process_check(left: &Value, right: &Value) -> Result<bool, ValueError> {
     println!("{:?} {:?}", left, right);
 
     let result = Ok(match (left, right) {
@@ -73,7 +73,7 @@ pub fn process_check(left: &Value, right: &Value) -> Result<bool, MyError> {
         (Value::Int { .. }, Value::String { .. }) => Some(Ordering::Less),
         (Value::String { .. }, Value::Int { .. }) => Some(Ordering::Greater),
 
-        _ => return Err(MyError::new("borked")),
+        _ => return Err(ValueError::new("borked")),
     });
 
     println!("process_check result: {:?}\n", result);
