@@ -75,7 +75,7 @@ pub fn process_check(left: &Value, right: &Value) -> Result<bool, ValueError> {
         (Value::String { .. }, Value::Int { .. }) => Some(Ordering::Greater),
 
         _ => {
-            let x = format!("left = {:?} right = {:?}\n", left, right);
+            let x = format!("not able to compare {:?} with {:?}\n", left, right);
             println!("left = {:?} right = {:?}\n", left, right);
             return Err(ValueError::new(&x));
         }
