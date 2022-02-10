@@ -47,6 +47,12 @@ fn main() {
         .map(|elem| process_check(&elem[0], &elem[1]))
         .collect();
 
+    // Go back to the old nushell sort_by and see how they do it now
+    // It looks like I don't have to call collect above but rather
+    // when we find our first error blast out of it and return an error
+    // otherwise for a long list you are going all the way to the end
+    // when you don't really need to...
+
     for v in values {
         if v.is_err() {
             // In my real world scenario I will return an Err,
