@@ -61,8 +61,12 @@ fn main() {
 }
 
 // if values contains a ValueError return it else continue
-pub fn process_values(vec: Vec<Result<bool, ValueError>>) -> Result<bool, ValueError> {
-    println!("{:?}", vec);
+pub fn process_values(vals: Vec<Result<bool, ValueError>>) -> Result<bool, ValueError> {
+    for v in vals {
+        if v.is_err() {
+            return v;
+        }
+    }
     return Ok(true);
 }
 
