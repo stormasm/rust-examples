@@ -40,7 +40,8 @@ fn main() {
     let v4 = Value::Int { val: 4 };
     let v5 = Value::Bool { val: true };
     let v6 = Value::Int { val: 1 };
-    let vec = vec![v1, v2, v3, v4, v5, v6];
+    let v7 = Value::Int { val: 8 };
+    let vec = vec![v1, v2, v3, v4, v5, v6, v7];
 
     if let Some(values) = vec
         .windows(2)
@@ -53,7 +54,7 @@ fn main() {
 
 // return true if there is no error
 pub fn process_check(left: &Value, right: &Value) -> Result<bool, ValueError> {
-    // println!("{:?} {:?}", left, right);
+    println!("{:?} {:?}", left, right);
 
     let result = Ok(match (left, right) {
         (Value::Int { val: left, .. }, Value::Int { val: right, .. }) => {
