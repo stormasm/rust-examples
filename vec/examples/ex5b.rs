@@ -47,7 +47,7 @@ fn main() {
         .map(|elem| process_check(&elem[0], &elem[1]))
         .collect();
 
-    // println!("values: {:?}", values);
+    println!("values: {:?}", values);
 
     /*
         if values.contains(&false) {
@@ -75,8 +75,9 @@ pub fn process_check(left: &Value, right: &Value) -> Result<bool, ValueError> {
         (Value::String { .. }, Value::Int { .. }) => Some(Ordering::Greater),
 
         _ => {
+            let x = format!("left = {:?} right = {:?}\n", left, right);
             println!("left = {:?} right = {:?}\n", left, right);
-            return Err(ValueError::new("borked"));
+            return Err(ValueError::new(&x));
         }
     });
 
