@@ -49,6 +49,8 @@ fn main() {
 
     for v in values {
         if v.is_err() {
+            // In my real world scenario I will return an Err,
+            // and if no error keep going and move on to vec.sort_by
             println!("{:?}", v);
         }
     }
