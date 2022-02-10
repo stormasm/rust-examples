@@ -47,8 +47,10 @@ fn main() {
         .map(|elem| process_check(&elem[0], &elem[1]))
         .collect();
 
-    println!("values: {:?}", values);
+    // println!("values: {:?}", values);
 
+    let pv = process_values(values);
+    println!("{:?}", pv);
     /*
         if values.contains(&false) {
             println!("fail")
@@ -56,6 +58,12 @@ fn main() {
             println!("pass");
         }
     */
+}
+
+// if values contains a ValueError return it else continue
+pub fn process_values(vec: Vec<Result<bool, ValueError>>) -> Result<bool, ValueError> {
+    println!("{:?}", vec);
+    return Ok(true);
 }
 
 // return true if there is no error
