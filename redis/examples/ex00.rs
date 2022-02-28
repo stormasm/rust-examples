@@ -7,7 +7,7 @@ fn fetch_an_integer() -> redis::RedisResult<isize> {
     // let mut con = client.get_connection()?;
     let mut con = client.get_connection().expect("Failed to connect to Redis");
     // throw away the result, just make sure it does not fail
-    let _ : () = con.lpush("my_list1", 120)?;
+    let _: () = con.lpush("my_list1", 120)?;
     // read back the key and return it.  Because the return value
     // from the function is a result for integer this will automatically
     // convert into one.
@@ -17,5 +17,5 @@ fn fetch_an_integer() -> redis::RedisResult<isize> {
 fn main() {
     println!("Hello, redis!");
     let _y = fetch_an_integer();
-    println!("{:?}",_y)
+    println!("{:?}", _y)
 }

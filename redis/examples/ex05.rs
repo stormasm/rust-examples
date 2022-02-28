@@ -3,12 +3,12 @@ use serde_json::json;
 use serde_json::{Result, Value};
 use std::string::String;
 
-fn string_to_json1() -> Result<(Value)> {
+fn string_to_json1() -> Result<Value> {
     let data = json!(["21195107", "21190487", "21189256", "21193497", "21191588"]);
     Ok(data)
 }
 
-fn string_to_json2() -> Result<(Value)> {
+fn string_to_json2() -> Result<Value> {
     let data = json!({"firstname":"rick","lastname":"stevens"});
     Ok(data)
 }
@@ -53,8 +53,8 @@ fn main() {
     let json4 = json!({"firstname":"mike","lastname":"roth"});
 
     let key3 = "key3".to_string();
-    let _x3 = write_json_to_redis_key(key3,json3);
+    let _x3 = write_json_to_redis_key(key3, json3);
 
     let key4 = "key4".to_string();
-    let _x4 = write_json_to_redis_key(key4,json4);
+    let _x4 = write_json_to_redis_key(key4, json4);
 }
