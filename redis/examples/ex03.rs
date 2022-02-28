@@ -3,8 +3,8 @@ https://github.com/mitsuhiko/redis-rs/blob/master/examples/basic.rs
 */
 
 extern crate redis;
-use redis::{transaction, Commands, PipelineCommands};
-use std::error::Error;
+use redis::{transaction, Commands};
+//use std::error::Error;
 
 use std::collections::HashMap;
 
@@ -163,7 +163,7 @@ fn main() {
     match do_redis_code() {
         Err(err) => {
             println!("Could not execute example:");
-            println!("  {}: {}", err.category(), err.description());
+            println!("{}", err.to_string());
         }
         Ok(()) => {}
     }
