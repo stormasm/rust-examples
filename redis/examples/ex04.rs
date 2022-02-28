@@ -3,7 +3,7 @@ use serde_json::json;
 use serde_json::{Result, Value};
 use std::string::String;
 
-fn string_to_json() -> Result<(Value)> {
+fn string_to_json() -> Result<Value> {
     let data = json!(["21195107", "21190487", "21189256", "21193497", "21191588"]);
     Ok(data)
 }
