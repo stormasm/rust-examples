@@ -10,9 +10,7 @@ use std::string::String;
 use std::fs::File;
 use std::io::BufReader;
 
-//use std::io;
 use std::io::BufRead;
-//use std::io::BufWriter;
 use std::io::LineWriter;
 use std::io::Write;
 
@@ -31,11 +29,7 @@ fn read_file_to_buffer2(filename: String) -> std::io::Result<()> {
     let f = File::open(filename).unwrap();
     let file = BufReader::new(&f);
 
-    //    let f = File::open(filename);
-    //    let file = BufReader::new(f);
-
     let path = "lines.txt";
-
     let mut output = File::create(path)?;
     write!(output, "Rust\n💖\nFun")?;
 
@@ -44,7 +38,6 @@ fn read_file_to_buffer2(filename: String) -> std::io::Result<()> {
 
     filew.write_all(b"I shall be telling this with a sigh")?;
 
-    //let mut writer = BufWriter::new(io::stdout());
     for (num, line) in file.lines().enumerate() {
         let l = line.unwrap();
         writeln!(filew, "{0} {1}\n", num, l).unwrap();
