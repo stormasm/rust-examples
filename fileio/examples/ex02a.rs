@@ -1,7 +1,7 @@
-use std::{env, fs};
 use std::error::Error;
+use std::{env, fs};
 
-fn dir_reader() -> Result<(), Box<Error>> {
+fn dir_reader() -> Result<(), Box<dyn Error>> {
     let current_dir = env::current_dir()?;
     println!(
         "Entries modified in the last 24 hours in {:?}:",
@@ -30,5 +30,6 @@ fn dir_reader() -> Result<(), Box<Error>> {
 }
 
 fn main() {
-    dir_reader();
+    let x = dir_reader();
+    println!("{:?}", x);
 }
