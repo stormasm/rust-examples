@@ -41,7 +41,8 @@ fn read_file_to_buffer2(filename: String, numoflines: usize) -> std::io::Result<
     for (num, line) in file.lines().enumerate() {
         if num < numoflines {
             let l = line.unwrap();
-            writeln!(filew, "{0} {1}\n", num, l).unwrap();
+            // writeln!(filew, "{0} {1}\n", num, l).unwrap();
+            writeln!(filew, "{}", l).unwrap();
         }
     }
     Ok(())
