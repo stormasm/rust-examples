@@ -25,7 +25,7 @@ fn read_file_to_buffer1(filename: String) -> std::io::Result<()> {
     Ok(())
 }
 
-fn read_file_to_buffer2(filename: String) -> std::io::Result<()> {
+fn read_file_to_buffer2(filename: String, numoflines: usize) -> std::io::Result<()> {
     let f = File::open(filename).unwrap();
     let file = BufReader::new(&f);
 
@@ -39,22 +39,28 @@ fn read_file_to_buffer2(filename: String) -> std::io::Result<()> {
     filew.write_all(b"I shall be telling this with a sigh")?;
 
     for (num, line) in file.lines().enumerate() {
-        let l = line.unwrap();
-        writeln!(filew, "{0} {1}\n", num, l).unwrap();
+        if num < numoflines {
+            let l = line.unwrap();
+            writeln!(filew, "{0} {1}\n", num, l).unwrap();
+        }
     }
     Ok(())
 }
 
 fn main() {
     let args: Vec<String> = env::args().collect();
-    if args.len() != 2 {
-        println!("You need to enter a filename");
+    if args.len() != 3 {
+        println!("You need to enter a filename and the number of lines to write out...");
         process::exit(1);
     }
     let filename = &args[1];
-    println!("In file {}", filename);
+    let numoflines = &args[2];
 
-    let _contents = read_file_to_buffer2(filename.to_string());
+    let nol = numoflines.parse::<usize>().unwrap();
+
+    println!("Reading {} lines of file {}", nol, filename);
+
+    let _contents = read_file_to_buffer2(filename.to_string(), nol);
 
     //println!("With text:\n{}", contents);
 }
