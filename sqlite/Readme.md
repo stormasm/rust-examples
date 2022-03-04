@@ -11,3 +11,5 @@ csvs-to-sqlite ./csv/moravec.csv mydb1.db
 ```rust
 cargo run --example ex01
 ```
+
+Note: You have to put the entry column data in the csv file in a String, you can not just have it be a bunch of bare characters without the string delineation. And it looks Strings are best delineated with double quotes and not single quotes.
