@@ -13,3 +13,9 @@ cargo run --example ex01
 ```
 
 Note: You have to put the entry column data in the csv file in a String, you can not just have it be a bunch of bare characters without the string delineation. And it looks Strings are best delineated with double quotes and not single quotes.
+
+#### sqlite3 command line tool
+
+To visualize your sqlite db you can simply run the command line tool sqlite3.
+
+For more details go [here](https://sqlite.org/cli.html).
