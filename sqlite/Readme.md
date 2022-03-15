@@ -19,3 +19,6 @@ Note: You have to put the entry column data in the csv file in a String, you can
 To visualize your sqlite db you can simply run the command line tool sqlite3.
 
 For more details go [here](https://sqlite.org/cli.html).
+
+For specific commands needed in this repo checkout our
+[sqlite3 cheat sheet](./sqlite3.md)
