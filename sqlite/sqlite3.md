@@ -1,5 +1,5 @@
 
-sqlite3 <dbname>
+sqlite3 *dbname*
 
 #### To see a list of tables
 
@@ -9,4 +9,4 @@ sqlite3 <dbname>
 
 .mode column
 
-select * from <tablename>;
+select * from *tablename*;
