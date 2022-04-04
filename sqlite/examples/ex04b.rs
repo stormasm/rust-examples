@@ -10,13 +10,13 @@ fn main() -> Result<()> {
     //  let rows: Rows<'_> = stmt.query([])?;
     let mut rows = stmt.query([])?;
 
-    //while let Some(row) = rows.next()? {
-    //println!("{:?}", row.unwrap();
+    while let Some(row) = rows.next()? {
+        //println!("{:?}", row.unwrap();
 
-    let row1 = rows.next()?.unwrap();
-    let s1: Option<String> = row1.get_unwrap(2);
-    println!("{:?}", s1.unwrap());
-    //}
+        //let row1 = rows.next()?.unwrap();
+        let s1: Option<String> = row.get_unwrap(2);
+        println!("{:?}", s1.unwrap());
+    }
 
     Ok(())
 }
