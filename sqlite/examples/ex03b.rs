@@ -12,12 +12,13 @@ fn main() -> Result<()> {
     else {
     let dbname = &args[1];
     let myfilename = &args[2];
-    }
+    
     let db = Connection::open("mydb3a.db")?;
     // let db = Connection::open(dbname)?;
 
     load_module(&db)?;
     db.execute_batch("CREATE VIRTUAL TABLE vtab USING csv(filename='./csv/test.csv', header=yes)")?;
+    }
 
     Ok(())
 }
