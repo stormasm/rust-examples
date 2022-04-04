@@ -18,7 +18,7 @@ fn main() -> Result<()> {
     })?;
 
     for moravec in moravec_iter {
-        println!("Found moravec {:?}", moravec.unwrap());
+        println!("{:?}", moravec.unwrap());
     }
     Ok(())
 }
