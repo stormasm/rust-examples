@@ -34,6 +34,6 @@ For specific commands needed in this repo checkout our
 
 ### References
 
-[The Virtual Table Mechanism Of SQLite](https://www.sqlite.org/vtab.html)
-[The CSV Virtual Table](https://www.sqlite.org/csv.html)
-[JSON Functions And Operators](https://www.sqlite.org/json1.html)
+* [The Virtual Table Mechanism Of SQLite](https://www.sqlite.org/vtab.html)
+* [The CSV Virtual Table](https://www.sqlite.org/csv.html)
+* [JSON Functions And Operators](https://www.sqlite.org/json1.html)
