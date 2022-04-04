@@ -4,8 +4,9 @@ Because the csv vtab functionality is new it is not currently built into the sql
 To create a sqlite database from a csv file and then to view the entire sqlite database.
 
 ```rust
-cre dbcreate people8.db ./csv/people1.csv
-cre dbview people8.db
+cre dbcsvcreate people8.db ./csv/people1.csv
+cre dbcsview people8.db
+cre dbview vtab people8.db
 ```
 
 ### Python Tool to Write a CSV file to an Sqlite Database
