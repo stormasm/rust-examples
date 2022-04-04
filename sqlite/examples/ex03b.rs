@@ -8,16 +8,24 @@ fn main() -> Result<()> {
 
     if args.len() != 3 {
         println!("Please enter a database name and a csv file name");
-    }
-    else {
-    let dbname = &args[1];
-    let myfilename = &args[2];
-    
-    let db = Connection::open("mydb3a.db")?;
-    // let db = Connection::open(dbname)?;
+    } else {
+        let dbname = &args[1];
+        let myfilename = &args[2];
 
-    load_module(&db)?;
-    db.execute_batch("CREATE VIRTUAL TABLE vtab USING csv(filename='./csv/test.csv', header=yes)")?;
+        // let db = Connection::open("mydb3a.db")?;
+        let db = Connection::open(dbname)?;
+
+        load_module(&db)?;
+
+        //    let s = format!("{}", foo)
+
+        let s = format!(
+            "CREATE VIRTUAL TABLE vtab USING csv(filename={}, header=yes)",
+            myfilename
+        );
+
+        //db.execute_batch("CREATE VIRTUAL TABLE vtab USING csv(filename='./csv/test.csv', header=yes)")?;
+        let _x = db.execute_batch(&s);
     }
 
     Ok(())
