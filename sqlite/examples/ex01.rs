@@ -1,5 +1,6 @@
 use rusqlite::{Connection, Result};
 
+#[allow(dead_code)]
 #[derive(Debug)]
 struct Moravec {
     id: i32,
