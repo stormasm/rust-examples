@@ -30,13 +30,18 @@ fn convert_sqlite_value_to_nu_value(value: ValueRef) -> Value {
 }
 
 fn convert_sqlite_row_to_nu_value(row: &Row) -> Value {
-    let mut collected = TaggedDictBuilder::new(tag.clone());
+
+    // do a Record or a List here later in the day....
+
+    let mut collected = Vec::new();
+
     for (i, c) in row.as_ref().column_names().iter().enumerate() {
         collected.insert_value(
             c.to_string(),
             convert_sqlite_value_to_nu_value(row.get_ref_unwrap(i)),
         );
     }
+    
     collected.into_value()
 }
 
