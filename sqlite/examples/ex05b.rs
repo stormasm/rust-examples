@@ -11,9 +11,9 @@ fn main() -> Result<()> {
 
     while let Some(meta_row) = meta_rows.next()? {
         let table_name: String = meta_row.get(0)?;
+        println!("{:?}", table_name);
         if tables.is_empty() || tables.contains(&table_name) {
-            // let mut meta_dict = TaggedDictBuilder::new(tag.clone());
-            // let mut out = Vec::new();
+            println!("{:?}", table_name);
             let mut table_stmt = conn.prepare(&format!("select * from [{}]", table_name))?;
             let mut table_rows = table_stmt.query([])?;
             while let Some(_table_row) = table_rows.next()? {
@@ -23,16 +23,5 @@ fn main() -> Result<()> {
         }
     }
 
-    // this table name is in the above table
-    let table_name: String = "person".to_string();
-
-    //    let mut out = Vec::new();
-    let mut table_stmt = conn.prepare(&format!("select * from [{}]", table_name))?;
-    let mut table_rows = table_stmt.query([])?;
-    while let Some(_table_row) = table_rows.next()? {
-        println!("hola");
-        //println!("{:?}",table_row);
-        // out.push(convert_sqlite_row_to_nu_value(table_row, tag.clone()))
-    }
     Ok(())
 }
