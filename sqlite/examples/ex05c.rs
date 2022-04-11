@@ -1,20 +1,31 @@
-use nu_protocol::Value;
+use nu_protocol::{Span, Value};
 use rusqlite::types::ValueRef;
 use rusqlite::{Connection, Result, Row};
 
 fn convert_sqlite_value_to_nu_value(value: ValueRef) -> Value {
+    let span = Span::new(0, 0);
+
     match value {
         ValueRef::Null => {
-            println!("got Null")
+            println!("got Null");
+            Value::Nothing { span }
         }
-        ValueRef::Integer(i) => println!("got Integer {:?}", i),
+        ValueRef::Integer(i) => {
+            println!("got Integer {:?}", i);
+            Value::Nothing { span }
+        }
         ValueRef::Real(f) => {
-            println!("got Real {:?}", f)
+            println!("got Real {:?}", f);
+            Value::Nothing { span }
         }
         ValueRef::Text(s) => {
-            println!("got Text {:?}", s)
+            println!("got Text {:?}", s);
+            Value::Nothing { span }
         }
-        ValueRef::Blob(u) => println!("got Blob {:?}", u),
+        ValueRef::Blob(u) => {
+            println!("got Blob {:?}", u);
+            Value::Nothing { span }
+        }
     }
 }
 
