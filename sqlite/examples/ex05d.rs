@@ -40,7 +40,6 @@ fn convert_sqlite_value_to_nu_value(value: ValueRef) -> Value {
 }
 
 fn convert_sqlite_row_to_nu_value(row: &Row) -> Value {
-    //let list: Vec<Value> = Vec::new();
     let mut vals = Vec::new();
     let colnamestr = row.as_ref().column_names().to_vec();
     // convert str to String
@@ -59,43 +58,8 @@ fn convert_sqlite_row_to_nu_value(row: &Row) -> Value {
     }
 }
 
-/*
-fn convert_sqlite_row_to_nu_value(row: &Row) -> Value {
-    let mut collected = HashMap::new();
-
-    for (i, c) in row.as_ref().column_names().iter().enumerate() {
-        collected.insert(
-            c.to_string(),
-            convert_sqlite_value_to_nu_value(row.get_ref_unwrap(i)),
-        );
-    }
-
-    println!("{:?}", collected);
-
-    let span = Span::new(0, 0);
-    Value::Nothing { span }
-}
-
-
-fn convert_sqlite_row_to_nu_value(row: &Row) -> Value {
-
-    // do a Record or a List here later in the day....
-
-    let mut collected = Vec::new();
-
-    for (i, c) in row.as_ref().column_names().iter().enumerate() {
-        collected.insert_value(
-            c.to_string(),
-            convert_sqlite_value_to_nu_value(row.get_ref_unwrap(i)),
-        );
-    }
-
-    collected.into_value()
-}
-*/
-
 fn main() -> Result<()> {
-    // to create this db run writedb01
+    // to create this db run writedb04
     let conn = Connection::open("person04.db")?;
 
     let mut meta_stmt = conn.prepare("select name from sqlite_master where type='table'")?;
