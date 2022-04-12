@@ -51,6 +51,8 @@ fn convert_sqlite_row_to_nu_value(row: &Row) -> Value {
         );
     }
 
+    println!("{:?}", collected);
+
     let span = Span::new(0, 0);
     Value::Nothing { span }
 }
