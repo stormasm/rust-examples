@@ -20,12 +20,8 @@ fn convert_sqlite_value_to_nu_value(value: ValueRef) -> Value {
             println!("got Real {:?}", f);
             Value::Float { val: f, span: span }
         }
+
         ValueRef::Text(buf) => {
-            //            println!("got Text {:?}", buf);
-            //            let value = s.into_value(span);
-
-            //            Value::Nothing { span }
-
             let s = match std::str::from_utf8(buf) {
                 Ok(v) => v,
                 Err(e) => panic!("Invalid UTF-8 sequence: {}", e),
