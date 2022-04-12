@@ -2,6 +2,8 @@ use nu_protocol::{Span, Value};
 use rusqlite::types::ValueRef;
 use rusqlite::{Connection, Result, Row};
 
+use std::collections::HashMap;
+
 fn convert_sqlite_value_to_nu_value(value: ValueRef) -> Value {
     let span = Span::new(0, 0);
 
@@ -30,6 +32,21 @@ fn convert_sqlite_value_to_nu_value(value: ValueRef) -> Value {
 }
 
 fn convert_sqlite_row_to_nu_value(row: &Row) -> Value {
+    let mut collected = HashMap::new();
+
+    for (i, c) in row.as_ref().column_names().iter().enumerate() {
+        collected.insert(
+            c.to_string(),
+            convert_sqlite_value_to_nu_value(row.get_ref_unwrap(i)),
+        );
+    }
+
+    let span = Span::new(0, 0);
+    Value::Nothing { span }
+}
+
+/*
+fn convert_sqlite_row_to_nu_value(row: &Row) -> Value {
 
     // do a Record or a List here later in the day....
 
@@ -41,9 +58,10 @@ fn convert_sqlite_row_to_nu_value(row: &Row) -> Value {
             convert_sqlite_value_to_nu_value(row.get_ref_unwrap(i)),
         );
     }
-    
+
     collected.into_value()
 }
+*/
 
 fn main() -> Result<()> {
     // to create this db run writedb01
