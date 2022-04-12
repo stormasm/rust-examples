@@ -14,11 +14,11 @@ fn convert_sqlite_value_to_nu_value(value: ValueRef) -> Value {
         }
         ValueRef::Integer(i) => {
             println!("got Integer {:?}", i);
-            Value::Nothing { span }
+            Value::Int { val: i, span: span }
         }
         ValueRef::Real(f) => {
             println!("got Real {:?}", f);
-            Value::Nothing { span }
+            Value::Float { val: f, span: span }
         }
         ValueRef::Text(s) => {
             println!("got Text {:?}", s);
