@@ -15,7 +15,7 @@ fn main() -> Result<()> {
     conn.execute(
         "CREATE TABLE person (
                   id              INTEGER PRIMARY KEY,
-                  name            TEXT NOT NULL,
+                  name            TEXT,
                   data            BLOB,
                   grade           REAL
                   )",
@@ -43,6 +43,13 @@ fn main() -> Result<()> {
         grade: 5.2,
     };
 
+    let me3 = Person {
+        id: 3,
+        name: "".to_string(),
+        data: None,
+        grade: 8.2,
+    };
+
     conn.execute(
         "INSERT INTO person (name, data, grade) VALUES (?1, ?2, ?3)",
         params![me0.name, me0.data, me0.grade],
@@ -56,6 +63,11 @@ fn main() -> Result<()> {
     conn.execute(
         "INSERT INTO person (name, data, grade) VALUES (?1, ?2, $3)",
         params![me2.name, me2.data, me2.grade],
+    )?;
+
+    conn.execute(
+        "INSERT INTO person (name, data, grade) VALUES (?1, ?2, $3)",
+        params![me3.name, me3.data, me3.grade],
     )?;
 
     let mut stmt = conn.prepare("SELECT id, name, data, grade FROM person")?;
