@@ -40,14 +40,23 @@ fn convert_sqlite_value_to_nu_value(value: ValueRef) -> Value {
 }
 
 fn convert_sqlite_row_to_nu_value(row: &Row) -> Value {
+    //let list: Vec<Value> = Vec::new();
+    let mut vals = Vec::new();
+    let colnamestr = row.as_ref().column_names().to_vec();
+    // convert str to String
+    let colnames = colnamestr.iter().map(|s| s.to_string()).collect();
+
     for (i, c) in row.as_ref().column_names().iter().enumerate() {
-        let column = c.to_string();
+        let _column = c.to_string();
         let val = convert_sqlite_value_to_nu_value(row.get_ref_unwrap(i));
-        println!("{:?} {:?}", column, val);
+        vals.push(val);
     }
 
-    let span = Span::new(0, 0);
-    Value::Nothing { span }
+    Value::Record {
+        cols: colnames,
+        vals: vals,
+        span: Span::test_data(),
+    }
 }
 
 /*
@@ -99,12 +108,18 @@ fn main() -> Result<()> {
         // println!("table name = {:?}", table_name);
         if tables.is_empty() || tables.contains(&table_name) {
             let mut out = Vec::new();
-            println!("table name = {:?}", table_name);
+            //println!("table name = {:?}", table_name);
             let mut table_stmt = conn.prepare(&format!("select * from [{}]", table_name))?;
             let mut table_rows = table_stmt.query([])?;
             while let Some(table_row) = table_rows.next()? {
                 out.push(convert_sqlite_row_to_nu_value(table_row))
             }
+            //println!("{:?}", out);
+            let _list = Value::List {
+                vals: out,
+                span: Span::test_data(),
+            };
+            //println!("{:?}", list);
         }
     }
 
