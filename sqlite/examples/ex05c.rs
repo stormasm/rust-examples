@@ -74,14 +74,13 @@ fn main() -> Result<()> {
 
     while let Some(meta_row) = meta_rows.next()? {
         let table_name: String = meta_row.get(0)?;
-        println!("{:?}", table_name);
+        // println!("table name = {:?}", table_name);
         if tables.is_empty() || tables.contains(&table_name) {
             let mut out = Vec::new();
-            println!("{:?}", table_name);
+            println!("table name = {:?}", table_name);
             let mut table_stmt = conn.prepare(&format!("select * from [{}]", table_name))?;
             let mut table_rows = table_stmt.query([])?;
             while let Some(table_row) = table_rows.next()? {
-                println!("hola");
                 out.push(convert_sqlite_row_to_nu_value(table_row))
             }
         }
