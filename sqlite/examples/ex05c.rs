@@ -36,7 +36,12 @@ fn convert_sqlite_value_to_nu_value(value: ValueRef) -> Value {
         }
         ValueRef::Blob(u) => {
             println!("got Blob {:?}", u);
-            Value::Nothing { span }
+            //            Value::Nothing { span }
+
+            Value::Binary {
+                val: u.to_vec(),
+                span: span,
+            }
         }
     }
 }
