@@ -77,7 +77,7 @@ fn convert_sqlite_row_to_nu_value(row: &Row) -> Value {
 
 fn main() -> Result<()> {
     // to create this db run writedb01
-    let conn = Connection::open("person02.db")?;
+    let conn = Connection::open("person03.db")?;
 
     let mut meta_stmt = conn.prepare("select name from sqlite_master where type='table'")?;
     let mut meta_rows = meta_stmt.query([])?;
