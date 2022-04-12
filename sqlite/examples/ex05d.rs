@@ -2,22 +2,20 @@ use nu_protocol::{Span, Value};
 use rusqlite::types::ValueRef;
 use rusqlite::{Connection, Result, Row};
 
-use std::collections::HashMap;
-
 fn convert_sqlite_value_to_nu_value(value: ValueRef) -> Value {
     let span = Span::new(0, 0);
 
     match value {
         ValueRef::Null => {
-            println!("got Null");
+            //println!("got Null");
             Value::Nothing { span }
         }
         ValueRef::Integer(i) => {
-            println!("got Integer {:?}", i);
+            //println!("got Integer {:?}", i);
             Value::Int { val: i, span: span }
         }
         ValueRef::Real(f) => {
-            println!("got Real {:?}", f);
+            //println!("got Real {:?}", f);
             Value::Float { val: f, span: span }
         }
         ValueRef::Text(buf) => {
@@ -25,14 +23,14 @@ fn convert_sqlite_value_to_nu_value(value: ValueRef) -> Value {
                 Ok(v) => v,
                 Err(e) => panic!("Invalid UTF-8 sequence: {}", e),
             };
-            println!("got Text {:?}", s.to_string());
+            //println!("got Text {:?}", s.to_string());
             Value::String {
                 val: s.to_string(),
                 span: span,
             }
         }
         ValueRef::Blob(u) => {
-            println!("got Blob {:?}", u);
+            //println!("got Blob {:?}", u);
             Value::Binary {
                 val: u.to_vec(),
                 span: span,
@@ -41,6 +39,18 @@ fn convert_sqlite_value_to_nu_value(value: ValueRef) -> Value {
     }
 }
 
+fn convert_sqlite_row_to_nu_value(row: &Row) -> Value {
+    for (i, c) in row.as_ref().column_names().iter().enumerate() {
+        let column = c.to_string();
+        let val = convert_sqlite_value_to_nu_value(row.get_ref_unwrap(i));
+        println!("{:?} {:?}", column, val);
+    }
+
+    let span = Span::new(0, 0);
+    Value::Nothing { span }
+}
+
+/*
 fn convert_sqlite_row_to_nu_value(row: &Row) -> Value {
     let mut collected = HashMap::new();
 
@@ -57,7 +67,7 @@ fn convert_sqlite_row_to_nu_value(row: &Row) -> Value {
     Value::Nothing { span }
 }
 
-/*
+
 fn convert_sqlite_row_to_nu_value(row: &Row) -> Value {
 
     // do a Record or a List here later in the day....
