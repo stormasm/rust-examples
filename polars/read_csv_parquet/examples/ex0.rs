@@ -22,7 +22,7 @@ fn exwrite(df: &mut DataFrame) -> Result<()> {
 }
 
 fn main() {
-    let df = exread();
+    let mut df = exread().unwrap();
     println!("{:?}", df);
-    exwrite(&mut df.unwrap());
+    let _ = exwrite(&mut df);
 }
