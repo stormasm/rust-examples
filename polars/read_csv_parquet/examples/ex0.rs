@@ -1,8 +1,8 @@
 //! ## Read a csv file to a DataFrame
-//!
 //!use polars::prelude::{CsvEncoding, CsvReader, JsonReader, ParquetReader, SerReader};
-//use polars::prelude::{CsvReader, DataFrame};
-use polars::prelude::*;
+//!use polars::prelude::*;
+
+use polars::prelude::{CsvReader, DataFrame, Result, SerReader};
 
 fn example() -> Result<DataFrame> {
     // always prefer `from_path` as that is fastest.
