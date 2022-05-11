@@ -14,7 +14,6 @@ fn exread() -> Result<DataFrame> {
 
 fn exwrite(df: &mut DataFrame) -> Result<()> {
     let mut file = File::create("example.csv").expect("could not create file");
-
     CsvWriter::new(&mut file)
         .has_header(true)
         .with_delimiter(b',')
