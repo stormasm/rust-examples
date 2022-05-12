@@ -3,7 +3,7 @@
 //!use polars::prelude::*;
 
 use polars::prelude::{
-    CsvReader, CsvWriter, DataFrame, ParquetReader, Result, SerReader, SerWriter,
+    CsvReader, CsvWriter, DataFrame, ParquetReader, ParquetWriter, Result, SerReader, SerWriter,
 };
 use std::fs::File;
 
@@ -18,18 +18,21 @@ fn read() -> Result<DataFrame> {
     reader.finish()
 }
 
-/*
-fn write(df: &mut DataFrame) -> Result<()> {
-    let mut file = File::create("example.csv").expect("could not create file");
-    CsvWriter::new(&mut file)
-        .has_header(true)
-        .with_delimiter(b',')
-        .finish(df)
+fn stringify() -> String {
+    format!("error code:")
 }
-*/
+
+fn write(df: &mut DataFrame) -> Result<()> {
+    let mut file = File::create("example.parquet").expect("could not create file");
+
+    //    ParquetWriter::new(file).finish(df.as_mut())?;
+    ParquetWriter::new(file).finish(df)?;
+
+    Ok(())
+}
 
 fn main() {
     let mut df = read().unwrap();
     println!("{:?}", df);
-    //let _ = write(&mut df);
+    let _ = write(&mut df);
 }
