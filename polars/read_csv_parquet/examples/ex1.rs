@@ -23,7 +23,7 @@ fn stringify() -> String {
 }
 
 fn write(df: &mut DataFrame) -> Result<()> {
-    let mut file = File::create("example.parquet").expect("could not create file");
+    let mut file = File::create("foods1a.parquet").expect("could not create file");
 
     //    ParquetWriter::new(file).finish(df.as_mut())?;
     ParquetWriter::new(file).finish(df)?;
