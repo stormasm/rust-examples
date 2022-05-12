@@ -1,33 +1,15 @@
-//! ## Read a csv file to a DataFrame
-//!use polars::prelude::{CsvEncoding, CsvReader, JsonReader, ParquetReader, SerReader};
-//!use polars::prelude::*;
-
-use polars::prelude::{
-    CsvReader, CsvWriter, DataFrame, ParquetReader, ParquetWriter, Result, SerReader, SerWriter,
-};
+use polars::prelude::{DataFrame, ParquetReader, ParquetWriter, Result, SerReader};
 use std::fs::File;
 
 fn read() -> Result<DataFrame> {
-    // always prefer `from_path` as that is fastest.
-    //ParquetReader::from_path("../datasets/foods1.parquet")?
-    //    .has_header(true)
-    //    .finish();
-
     let r = File::open("../datasets/foods1.parquet").unwrap();
     let reader = ParquetReader::new(r);
     reader.finish()
 }
 
-fn stringify() -> String {
-    format!("error code:")
-}
-
 fn write(df: &mut DataFrame) -> Result<()> {
-    let mut file = File::create("../datasets/foods1a.parquet").expect("could not create file");
-
-    //    ParquetWriter::new(file).finish(df.as_mut())?;
+    let file = File::create("../datasets/foods1a.parquet").expect("could not create file");
     ParquetWriter::new(file).finish(df)?;
-
     Ok(())
 }
 
