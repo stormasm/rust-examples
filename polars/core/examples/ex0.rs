@@ -1,3 +1,4 @@
+use polars::df;
 use polars::prelude::{DataFrame, NamedFrom, Result, Series};
 
 fn main() {
@@ -10,4 +11,8 @@ fn main() {
 
     let dfb: Result<DataFrame> = DataFrame::new(vec![s1, s2]);
     println!("{:?}", dfb.unwrap());
+
+    let dfc: Result<DataFrame> = df!("Fruit" => &["Apple", "Apple", "Pear"],
+                                    "Color" => &["Red", "Yellow", "Green"]);
+    println!("{:?}", dfc.unwrap());
 }
