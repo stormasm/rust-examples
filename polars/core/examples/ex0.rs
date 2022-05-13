@@ -1,5 +1,16 @@
 use polars::df;
+//use polars::error::PolarsError;
 use polars::prelude::{DataFrame, NamedFrom, Result, Series};
+
+/*
+fn test1() {
+    let dfd = df!("Fruit" => &["Apple", "Apple", "Pear"],
+              "Color" => &["Red", "Yellow", "Green"]);
+
+    assert_eq!(dfd[0], Series::new("Fruit", &["Apple", "Apple", "Pear"]));
+    assert_eq!(dfd[1], Series::new("Color", &["Red", "Yellow", "Green"]));
+}
+*/
 
 fn main() {
     let dfa = DataFrame::default();
