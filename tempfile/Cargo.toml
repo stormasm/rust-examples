@@ -9,3 +9,4 @@ members = [
 ]
 
 [dependencies]
+tempfile = { path="./crates/tempfile" }
