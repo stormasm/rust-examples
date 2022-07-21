@@ -5,8 +5,8 @@ Leave everything in the string except a certain part of the string
 use nom::{bytes::complete::take_until, IResult};
 
 fn remove00(s: &str) -> IResult<&str, &str> {
-    // let remote_query: &'static str = "metadata: ";
-    take_until(", details: ")(s)
+    let delete: &'static str = ", details: ";
+    take_until(delete)(s)
 }
 
 fn main() {
