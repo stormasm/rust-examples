@@ -7,7 +7,7 @@
 
 ### Reference Articles
 
-[Rust - Writing Parsers With nom Parser Combinator Framework](https://iximiuz.com/en/posts/rust-writing-parsers-with-nom/)
+* [Rust - Writing Parsers With nom Parser Combinator Framework](https://iximiuz.com/en/posts/rust-writing-parsers-with-nom/)
 
 ### Github Projects using Nom
 
