@@ -6,7 +6,7 @@ use nom::{bytes::complete::take_until, IResult};
 
 fn remove00(s: &str) -> IResult<&str, &str> {
     // let remote_query: &'static str = "metadata: ";
-    take_until(" metadata: ")(s)
+    take_until(", metadata: ")(s)
 }
 
 fn main() {
