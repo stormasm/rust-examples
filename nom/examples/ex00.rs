@@ -1,14 +1,15 @@
 use nom::{
-    IResult,
     bytes::complete::{tag, take_while_m_n},
     combinator::map_res,
-    sequence::tuple};
+    sequence::tuple,
+    IResult,
+};
 
-#[derive(Debug,PartialEq)]
+#[derive(Debug, PartialEq)]
 pub struct Color {
-    pub red:     u8,
-    pub green:   u8,
-    pub blue:    u8,
+    pub red: u8,
+    pub green: u8,
+    pub blue: u8,
 }
 
 fn from_hex(input: &str) -> Result<u8, std::num::ParseIntError> {
@@ -20,23 +21,26 @@ fn is_hex_digit(c: char) -> bool {
 }
 
 fn hex_primary(input: &str) -> IResult<&str, u8> {
-    map_res(
-        take_while_m_n(2, 2, is_hex_digit),
-        from_hex
-    )(input)
+    map_res(take_while_m_n(2, 2, is_hex_digit), from_hex)(input)
 }
 
 fn hex_color(input: &str) -> IResult<&str, Color> {
     let (input, _) = tag("#")(input)?;
     let (input, (red, green, blue)) = tuple((hex_primary, hex_primary, hex_primary))(input)?;
-    
+
     Ok((input, Color { red, green, blue }))
 }
 
 fn main() {
-    assert_eq!(hex_color("#2F14DF"), Ok(("", Color {
-        red: 47,
-        green: 20,
-        blue: 223,
-    })));
+    assert_eq!(
+        hex_color("#2F14DF"),
+        Ok((
+            "",
+            Color {
+                red: 47,
+                green: 20,
+                blue: 223,
+            }
+        ))
+    );
 }
