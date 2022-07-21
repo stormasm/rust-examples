@@ -5,6 +5,6 @@ fn foo(s: &str) -> IResult<&str, &str> {
 }
 
 fn main() {
-    let result = foo("Error running remote query:");
+    let result = foo("Error running remote query: status: InvalidArgument, message: \"Error while planning query: Error during planning:");
     println!("{:?}", result);
 }
