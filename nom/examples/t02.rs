@@ -1,10 +1,10 @@
 use nom::{bytes::complete::tag, IResult};
 
 fn foo(s: &str) -> IResult<&str, &str> {
-    tag("foo")(s)
+    tag("Error running remote query:")(s)
 }
 
 fn main() {
-    let result = foo("foo bar");
+    let result = foo("Error running remote query:");
     println!("{:?}", result);
 }
