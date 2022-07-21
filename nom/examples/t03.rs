@@ -11,6 +11,6 @@ fn remove00(s: &str) -> IResult<&str, &str> {
 
 fn main() {
     let data: &'static str = "details: [], metadata: MetadataMap { headers: {\"content-type\": \"application/grpc\", \"date\": \"Wed, 20 Jul 2022 19:08:52 GMT\", \"content-length\": \"0\"} }";
-    let result = remove00(data);
+    let result = remove00(data).unwrap().1;
     println!("{:?}", result);
 }
