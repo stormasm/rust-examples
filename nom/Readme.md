@@ -11,5 +11,5 @@
 
 ### Github Projects using Nom
 
-[pq](https://github.com/iximiuz/pq)
-[config-rs](https://github.com/mehcode/config-rs)
+* [pq](https://github.com/iximiuz/pq)
+* [config-rs](https://github.com/mehcode/config-rs)
