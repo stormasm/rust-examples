@@ -19,6 +19,10 @@ fn get_header(s: &str) -> IResult<&str, &str> {
     take_until(header)(s)
 }
 
+fn remove_char_from_string(s: &String) -> String {
+    s.replace(&['(', ')', ',', '\"', ';', '\''][..], "")
+}
+
 fn main() {
     // let data: &'static str = "during planning: 'public.iox.h2o_xtemperature' not found\", details: [], metadata: MetadataMap { headers: {\"content-type\": \"application/grpc\", \"date\": \"Wed, 20 Jul 2022 19:08:52 GMT\", \"content-length\": \"0\"} }";
     let data: &'static str = "Error running remote query: status: InvalidArgument, message: \"Error while planning query: Error during planning: 'public.iox.h2o_xtemperature' not found\", details: [], metadata: MetadataMap { headers: {\"content-type\": \"application/grpc\", \"date\": \"Wed, 20 Jul 2022 19:08:52 GMT\", \"content-length\": \"0\"} }";
@@ -27,6 +31,8 @@ fn main() {
     println!("{:?}\n{:?}", &remainder, &message);
     let (status, header) = get_header(&remainder).unwrap();
     println!("{:?}\n{:?}", &header, &status);
+    let msg1 = remove_char_from_string(&message.to_string());
+    println!("{:?}", msg1);
 
     //println!("result: {:?}", result);
     /*
