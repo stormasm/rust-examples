@@ -13,3 +13,7 @@
 
 * [pq](https://github.com/iximiuz/pq)
 * [config-rs](https://github.com/mehcode/config-rs)
+
+### Nushell Iox Integration
+
+* [ioxerror.md](./ioxerror.md)
