@@ -12,3 +12,5 @@
 ```rust
 "Error running remote query: status: InvalidArgument, message: \"Error while planning query: SQL error: ParserError(\\\"Expected an SQL statement, found: showx\\\")\", details: [], metadata: MetadataMap { headers: {\"content-type\": \"application/grpc\", \"date\": \"Fri, 22 Jul 2022 20:32:33 GMT\", \"content-length\": \"0\"} }"
 ```
+
+* [go back to Readme](./Readme.md)
