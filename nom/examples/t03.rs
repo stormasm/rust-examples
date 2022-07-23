@@ -30,7 +30,8 @@ fn main() {
     let (message, remainder) = get_message(details).unwrap();
     println!("{:?}\n{:?}", &remainder, &message);
     let (status, header) = get_header(&remainder).unwrap();
-    println!("{:?}\n{:?}", &header, &status);
+    println!("{:?}", &header);
+    println!("{:?}", &status);
     let msg1 = remove_char_from_string(&message.to_string());
     println!("{:?}", msg1.trim());
 
