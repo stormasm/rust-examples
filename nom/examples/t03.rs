@@ -34,12 +34,4 @@ fn main() {
     println!("{:?}", &status);
     let msg1 = remove_char_from_string(&message.to_string());
     println!("{:?}", msg1.trim());
-
-    //println!("result: {:?}", result);
-    /*
-    let message = result.unwrap().0;
-    let status = result.unwrap().1;
-    println!("message: {:?}", message);
-    println!("status: {:?}", status);
-    */
 }
