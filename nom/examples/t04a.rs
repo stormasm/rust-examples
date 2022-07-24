@@ -22,12 +22,12 @@ impl NuIoxError {
         let (status0, header0) = get_header(&remainder).unwrap();
 
         let header1 = remove_colon_from_string(&header0.to_string());
-        println!("{:?}", header1.trim());
+        //println!("{:?}", header1.trim());
 
-        println!("{:?}", &status0);
+        //println!("{:?}", &status0);
 
         let message1 = remove_slash_from_string(&message0.to_string());
-        println!("{:?}", message1.trim());
+        //println!("{:?}", message1.trim());
 
         Self {
             start: data.to_string(),
@@ -64,6 +64,8 @@ fn remove_colon_from_string(s: &String) -> String {
 
 fn main() {
     let data: &'static str = "Error running remote query: status: InvalidArgument, message: \"Error while planning query: Error during planning: 'public.iox.h2o_xtemperature' not found\", details: [], metadata: MetadataMap { headers: {\"content-type\": \"application/grpc\", \"date\": \"Wed, 20 Jul 2022 19:08:52 GMT\", \"content-length\": \"0\"} }";
-    let _result = NuIoxError::build(data);
-    //println!("{:?}", result);
+    let result = NuIoxError::build(data);
+    println!("{:?}", result.header.trim());
+    println!("{:?}", result.status.trim());
+    println!("{:?}", result.message.trim());
 }
