@@ -16,7 +16,7 @@ struct NuIoxError {
 }
 
 impl NuIoxError {
-    fn build(&mut self, mut data: &str) -> Self {
+    fn build(mut data: &str) -> Self {
         let details = remove_details(data).unwrap().1;
         let (message0, remainder) = get_message(details).unwrap();
         let (status0, header0) = get_header(&remainder).unwrap();
@@ -64,4 +64,6 @@ fn remove_colon_from_string(s: &String) -> String {
 
 fn main() {
     let data: &'static str = "Error running remote query: status: InvalidArgument, message: \"Error while planning query: Error during planning: 'public.iox.h2o_xtemperature' not found\", details: [], metadata: MetadataMap { headers: {\"content-type\": \"application/grpc\", \"date\": \"Wed, 20 Jul 2022 19:08:52 GMT\", \"content-length\": \"0\"} }";
+    let _result = NuIoxError::build(data);
+    //println!("{:?}", result);
 }
