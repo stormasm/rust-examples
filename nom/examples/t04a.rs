@@ -1,5 +1,6 @@
 use nom::{bytes::complete::take_until, IResult};
 
+#[derive(Debug)]
 enum NuIoxErrorType {
     SQLTABLE,
     SQLSHOW,
@@ -15,20 +16,26 @@ struct NuIoxError {
 }
 
 impl NuIoxError {
-    fn build(&self) -> Self {
-        //self.width * self.height
-
+    fn build(&mut self, mut data: &str) -> Self {
         let details = remove_details(data).unwrap().1;
-        let (message, remainder) = get_message(details).unwrap();
-        let (status, header) = get_header(&remainder).unwrap();
+        let (message0, remainder) = get_message(details).unwrap();
+        let (status0, header0) = get_header(&remainder).unwrap();
 
-        let header1 = remove_colon_from_string(&header.to_string());
+        let header1 = remove_colon_from_string(&header0.to_string());
         println!("{:?}", header1.trim());
 
-        println!("{:?}", &status);
+        println!("{:?}", &status0);
 
-        let message1 = remove_slash_from_string(&message.to_string());
+        let message1 = remove_slash_from_string(&message0.to_string());
         println!("{:?}", message1.trim());
+
+        Self {
+            start: data.to_string(),
+            error_type: NuIoxErrorType::SQLTABLE,
+            header: header1,
+            status: status0.to_string(),
+            message: message1,
+        }
     }
 }
 
@@ -57,6 +64,4 @@ fn remove_colon_from_string(s: &String) -> String {
 
 fn main() {
     let data: &'static str = "Error running remote query: status: InvalidArgument, message: \"Error while planning query: Error during planning: 'public.iox.h2o_xtemperature' not found\", details: [], metadata: MetadataMap { headers: {\"content-type\": \"application/grpc\", \"date\": \"Wed, 20 Jul 2022 19:08:52 GMT\", \"content-length\": \"0\"} }";
-    
-    
 }
