@@ -1,8 +1,9 @@
 [package]
-name = "reqwest"
+name = "rt"
 version = "0.1.0"
-edition = "2018"
+edition = "2021"
 
 [dependencies]
 reqwest = { version = "0.11", features = ["json"] }
-tokio = { version = "1", features = ["full"] }
+tokio = { version = "1.19", features = ["fs", "macros", "net", "parking_lot", "rt-multi-thread", "signal", "sync", "time"] }
+futures = "0.3"

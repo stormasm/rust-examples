@@ -12,16 +12,10 @@ async fn write(s: &[u8]) -> io::Result<()> {
 async fn main() -> Result<(), reqwest::Error> {
     //let myurl = "https://hyper.rs";
     let myurl = "https://stringdb-static.org/organism_overview.html";
-
     let res = reqwest::get(myurl).await?;
-
     println!("Status: {}", res.status());
-
     let body = res.text().await?;
-
-    //    println!("Body:\n\n{}", body);
-
-    write(&body.into_bytes()).await;
-
+    // println!("Body:\n\n{}", body);
+    write(&body.into_bytes()).await.expect("broken");
     Ok(())
 }
