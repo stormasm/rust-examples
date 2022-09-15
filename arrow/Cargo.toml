@@ -1,0 +1,10 @@
+[package]
+name = "arrow"
+version = "0.1.0"
+edition = "2021"
+
+# [features]
+# prettyprint = ["comfy-table"]
+
+[dependencies]
+arrow = { version = "22.0.0", features = ["prettyprint"] }
