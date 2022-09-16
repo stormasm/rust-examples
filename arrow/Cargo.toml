@@ -15,3 +15,8 @@ arrow = { version = "22.0.0", features = ["prettyprint"] }
 name = "dynamic_types"
 required-features = ["prettyprint"]
 path = "./examples/dynamic_types.rs"
+
+[[example]]
+name = "recordbatch"
+required-features = ["prettyprint"]
+path = "./examples/recordbatch.rs"
