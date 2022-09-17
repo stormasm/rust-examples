@@ -2,11 +2,17 @@
 /// is represented by a separate array
 
 /// # Example: Create an array from a vector of fields
-use arrow::array::{Array, ArrayRef, BooleanArray, Int32Array, StructArray};
+use arrow::array::{Array, ArrayRef, BooleanArray, Int32Array, StringArray, StructArray};
 use arrow::datatypes::{DataType, Field};
 use std::sync::Arc;
 
 fn main() -> arrow::error::Result<()> {
+    let string = Arc::new(StringArray::from(vec![
+        Some("rick"),
+        Some("foo"),
+        None,
+        Some("bar"),
+    ]));
     let boolean = Arc::new(BooleanArray::from(vec![false, false, true, true]));
     let int = Arc::new(Int32Array::from(vec![42, 28, 19, 31]));
 
@@ -18,6 +24,10 @@ fn main() -> arrow::error::Result<()> {
         (
             Field::new("c", DataType::Int32, false),
             int.clone() as ArrayRef,
+        ),
+        (
+            Field::new("d", DataType::Utf8, false),
+            string.clone() as ArrayRef,
         ),
     ]);
     println!("{:?}", struct_array);
