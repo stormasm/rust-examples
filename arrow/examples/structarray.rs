@@ -20,6 +20,7 @@ fn main() -> arrow::error::Result<()> {
             int.clone() as ArrayRef,
         ),
     ]);
+    println!("{:?}", struct_array);
     assert_eq!(struct_array.column(0).as_ref(), boolean.as_ref());
     assert_eq!(struct_array.column(1).as_ref(), int.as_ref());
     assert_eq!(4, struct_array.len());
