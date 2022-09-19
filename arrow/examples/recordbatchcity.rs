@@ -7,8 +7,8 @@ use std::sync::Arc;
 use arrow::util::pretty::print_batches;
 
 fn main() -> arrow::error::Result<()> {
-    //let id0 = Int32Array::from(vec![1, 2, 3, 4, 5]);
-    //let id1 = Int32Array::from(vec![6, 7, 8, 9, 10]);
+    let id0 = Int32Array::from(vec![1, 2, 3, 4]);
+    let id1 = Int32Array::from(vec![5, 6, 7, 8]);
 
     let city = Arc::new(StringArray::from(vec![
         Some("santafe"),
@@ -54,6 +54,8 @@ fn main() -> arrow::error::Result<()> {
 
     let batch = RecordBatch::try_new(
         Arc::new(Schema::new(vec![
+            Field::new("id0", DataType::Int32, false),
+            Field::new("id1", DataType::Int32, false),
             Field::new(
                 "cityg1",
                 DataType::Struct(vec![
@@ -73,7 +75,12 @@ fn main() -> arrow::error::Result<()> {
                 false,
             ),
         ])),
-        vec![Arc::new(struct_array1), Arc::new(struct_array2)],
+        vec![
+            Arc::new(id0),
+            Arc::new(id1),
+            Arc::new(struct_array1),
+            Arc::new(struct_array2),
+        ],
     )?;
 
     print_batches(&[batch.clone()]).unwrap();
