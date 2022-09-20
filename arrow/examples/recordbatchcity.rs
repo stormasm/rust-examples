@@ -10,6 +10,7 @@ fn main() -> arrow::error::Result<()> {
     let id0 = Int32Array::from(vec![1, 2, 3, 4]);
     let id1 = Int32Array::from(vec![5, 6, 7, 8]);
     let bool0 = BooleanArray::from(vec![true, false, true, false]);
+    let utf0 = StringArray::from(vec![Some("a"), Some("b"), Some("c"), Some("d")]);
 
     let city = Arc::new(StringArray::from(vec![
         Some("santafe"),
@@ -67,6 +68,7 @@ fn main() -> arrow::error::Result<()> {
                 false,
             ),
             Field::new("bool0", DataType::Boolean, false),
+            Field::new("utf0", DataType::Utf8, false),
             Field::new(
                 "cityg2",
                 DataType::Struct(vec![
@@ -82,6 +84,7 @@ fn main() -> arrow::error::Result<()> {
             Arc::new(id1),
             Arc::new(struct_array1),
             Arc::new(bool0),
+            Arc::new(utf0),
             Arc::new(struct_array2),
         ],
     )?;
