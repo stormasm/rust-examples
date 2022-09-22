@@ -1,0 +1,23 @@
+[package]
+name = "arrow"
+version = "0.1.0"
+edition = "2021"
+
+[features]
+default = ["prettyprint"]
+prettyprint = ["comfy-table"]
+
+[dependencies]
+comfy-table = { version = "6.0", optional = true, default-features = false }
+#arrow = { version = "22.0.0", features = ["prettyprint"] }
+arrow = { git = "https://github.com/stormasm/narrow", branch = "data_gen" }
+
+[[example]]
+name = "dynamic_types"
+required-features = ["prettyprint"]
+path = "./examples/dynamic_types.rs"
+
+[[example]]
+name = "recordbatch"
+required-features = ["prettyprint"]
+path = "./examples/recordbatch.rs"
