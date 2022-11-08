@@ -1,0 +1,8 @@
+[package]
+name = "rexdf"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+datafusion = "14.0"
+tokio = "1.0"
