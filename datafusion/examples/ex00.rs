@@ -10,15 +10,30 @@ async fn main() -> Result<()> {
     let ctx = SessionContext::new();
 
     // let testdata = datafusion::test_util::arrow_test_data();
-    let datadir = env::current_dir();
+    let mut datadir = env::current_dir().unwrap();
+
+    /*
+        let my_str: String = datadir.as_os_str().to_str().unwrap().to_string();
+        println!("{:?}", my_str);
+    */
+
     println!("{:?}", datadir);
 
+    //datadir.pop();
+    println!("{:?}", datadir);
+    /*
+        datadir.push("/data/example.csv");
+        println!("{:?}", datadir);
+    */
     //let hello = String::from("Hello, world!");
 
     let testdata = String::from("/Users/ma/j/tmp06/rust-examples/datafusion/data/example.csv");
 
+    let testdata1 = &format!("{}/data/example.csv", datadir.display());
+    println!("{:?}", testdata1);
+
     // register csv file with the execution context
-    ctx.register_csv("example", &testdata, CsvReadOptions::new())
+    ctx.register_csv("example", &testdata1, CsvReadOptions::new())
         .await?;
 
     // execute the query
