@@ -10,7 +10,8 @@ async fn main() -> Result<()> {
     let ctx = SessionContext::new();
 
     // let testdata = datafusion::test_util::arrow_test_data();
-    //let testdata = env::current_dir();
+    let datadir = env::current_dir();
+    println!("{:?}", datadir);
 
     //let hello = String::from("Hello, world!");
 
