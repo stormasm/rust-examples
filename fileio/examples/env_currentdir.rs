@@ -8,3 +8,6 @@ fn main() {
     let dir = env::current_dir().unwrap();
     println!("{:?}", dir);
 }
+
+// For more examples of how this is used please see
+// datafusion/examples/ex00.rs
