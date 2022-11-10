@@ -12,7 +12,7 @@ async fn main() -> Result<()> {
     let datadir = env::current_dir().unwrap();
 
     //let testdata1 = String::from("/Users/ma/j/tmp06/rust-examples/datafusion/data/example.csv");
-    let testdata = &format!("{}/data/example.csv", datadir.display());
+    let testdata = &format!("{}/data/red0.csv", datadir.display());
 
     // register csv file with the execution context
     ctx.register_csv("example", &testdata, CsvReadOptions::new())
