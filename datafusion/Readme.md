@@ -5,3 +5,7 @@
 * ex05.rs **Select a, f from example where f > 15**
 
 [For more details](https://github.com/stormasm/ioxnotes/blob/main/datafusion/plan.md)
+
+### References
+
+https://www.sqlitetutorial.net/
