@@ -13,7 +13,7 @@ async fn main() -> Result<()> {
     // variables to read are and what the default
     // value is if they're missing
     let env = Env::default()
-        .filter_or("MY_LOG_LEVEL", "trace")
+        .filter_or("MY_LOG_LEVEL", "debug")
         .write_style_or("MY_LOG_STYLE", "always");
 
     env_logger::init_from_env(env);
@@ -25,12 +25,17 @@ async fn main() -> Result<()> {
     error!("some error log");
 
     // create local execution context
-    let ctx = SessionContext::new();
+    // let ctx = SessionContext::new();
+
+    // Hard code target_partitions as it appears in the RepartitionExec output
+    let config = SessionConfig::new().with_target_partitions(1);
+    let ctx = SessionContext::with_config(config);
 
     let datadir = env::current_dir().unwrap();
 
     //let testdata1 = String::from("/Users/ma/j/tmp06/rust-examples/datafusion/data/example.csv");
     let testdata = &format!("{}/data/red0.csv", datadir.display());
+    println!("{:?}", testdata);
 
     // register csv file with the execution context
     ctx.register_csv("example", &testdata, CsvReadOptions::new())
