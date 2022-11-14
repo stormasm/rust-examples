@@ -25,6 +25,8 @@ async fn main() -> Result<()> {
     error!("some error log");
 
     // create local execution context
+    // note that the default number of partitions is set to 4
+    // so the hard coded way is to reset the number of partitions to 1
     // let ctx = SessionContext::new();
 
     // Hard code target_partitions as it appears in the RepartitionExec output
