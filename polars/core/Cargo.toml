@@ -4,4 +4,6 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-polars = { version = "0.21.1" }
+polars = { version = "0.25.1", features = ["lazy"] }
+reqwest =  { version = "0.11.12", features = ["blocking"] }
+color-eyre = "0.6"
