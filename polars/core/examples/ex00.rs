@@ -18,11 +18,12 @@ fn test2() -> PolarsResult<()> {
 
 fn test3() -> PolarsResult<()> {
     let df = df!("Fruit" => &["Apple", "Apple", "Pear"],
-              "Color" => &["Red", "Yellow", "Green"]);
+              "Color" => &["Red", "Yellow", "Green"])
+    .unwrap();
 
     println!("{:?}", df);
-    //println!("{:?}", &df[0]);
-    //println!("{:?}", df["Color"]);
+    println!("{:?}", &df[0]);
+    println!("{:?}", df["Color"]);
     Ok(())
 }
 
