@@ -1,3 +1,4 @@
+use polars::df;
 use polars::prelude::{DataFrame, NamedFrom, PolarsResult, Series};
 
 fn test1() {
@@ -15,19 +16,18 @@ fn test2() -> PolarsResult<()> {
     Ok(())
 }
 
-/*
-fn test3() {
-    let df: Result<DataFrame> = df!("Fruit" => &["Apple", "Apple", "Pear"],
+fn test3() -> PolarsResult<()> {
+    let df = df!("Fruit" => &["Apple", "Apple", "Pear"],
               "Color" => &["Red", "Yellow", "Green"]);
 
-    let x = df.unwrap();
-    println!("{:?}", x[0]);
-    println!("{:?}", x["Color"])
+    println!("{:?}", df);
+    //println!("{:?}", &df[0]);
+    //println!("{:?}", df["Color"]);
+    Ok(())
 }
-*/
 
 fn main() {
     test1();
     let _x = test2();
-    // test3();
+    let _y = test3();
 }
