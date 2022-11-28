@@ -1,5 +1,4 @@
-use polars::df;
-use polars::prelude::{DataFrame, NamedFrom, Result, Series};
+use polars::prelude::{DataFrame, NamedFrom, PolarsResult, Series};
 
 fn test1() {
     let df = DataFrame::default();
@@ -7,14 +6,19 @@ fn test1() {
     println!("{:?}", df);
 }
 
-fn test2() {
+//   fn test_argsort_multiple() -> PolarsResult<()> {
+fn test2() -> PolarsResult<()> {
     let s1 = Series::new("Fruit", &["Apple", "Apple", "Pear"]);
     let s2 = Series::new("Color", &["Red", "Yellow", "Green"]);
 
-    let df: Result<DataFrame> = DataFrame::new(vec![s1, s2]);
-    println!("{:?}", df.unwrap());
+    //let df = DataFrame::new(vec![a, b])?;
+
+    let df = DataFrame::new(vec![s1, s2])?;
+    println!("{:?}", df);
+    Ok(())
 }
 
+/*
 fn test3() {
     let df: Result<DataFrame> = df!("Fruit" => &["Apple", "Apple", "Pear"],
               "Color" => &["Red", "Yellow", "Green"]);
@@ -23,9 +27,10 @@ fn test3() {
     println!("{:?}", x[0]);
     println!("{:?}", x["Color"])
 }
+*/
 
 fn main() {
     test1();
     test2();
-    test3();
+    // test3();
 }
