@@ -6,12 +6,9 @@ fn test1() {
     println!("{:?}", df);
 }
 
-//   fn test_argsort_multiple() -> PolarsResult<()> {
 fn test2() -> PolarsResult<()> {
     let s1 = Series::new("Fruit", &["Apple", "Apple", "Pear"]);
     let s2 = Series::new("Color", &["Red", "Yellow", "Green"]);
-
-    //let df = DataFrame::new(vec![a, b])?;
 
     let df = DataFrame::new(vec![s1, s2])?;
     println!("{:?}", df);
@@ -31,6 +28,6 @@ fn test3() {
 
 fn main() {
     test1();
-    test2();
+    let _x = test2();
     // test3();
 }
