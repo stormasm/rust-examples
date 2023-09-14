@@ -3,7 +3,7 @@ use predicates::prelude::*;
 const SQL_PARSER_ERROR: &str = r#"This is a bad string"#;
 
 fn main() {
-    let sql_result = getStringWithError();
+    let sql_result = get_string_with_error();
     println!("sql_result = {:?}\n", sql_result);
 
     /*
@@ -12,7 +12,9 @@ fn main() {
     );
     */
 
-    let value_predicate = predicate::str::contains(sql_result);
+    let str = sql_result.unwrap_or("dog".to_string());
+
+    let value_predicate = predicate::str::contains(str);
 
     let parse_error = value_predicate.eval(SQL_PARSER_ERROR);
 
@@ -23,12 +25,12 @@ fn main() {
     }
 }
 
-pub fn getStringWithoutError() -> Result<String, std::io::Error> {
+pub fn get_string_without_error() -> Result<String, std::io::Error> {
     let x = "This is a good string".to_string();
     Ok(x)
 }
 
-pub fn getStringWithError() -> Result<String, std::io::Error> {
+pub fn get_string_with_error() -> Result<String, std::io::Error> {
     let x = "This is a bad string".to_string();
     Ok(x)
 }
