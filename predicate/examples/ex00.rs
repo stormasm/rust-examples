@@ -3,7 +3,7 @@ use predicates::prelude::*;
 const SQL_PARSER_ERROR: &str = r#"This is a bad string"#;
 
 fn main() {
-    let sql_result = get_string_with_error();
+    let sql_result = get_string_without_error();
     println!("sql_result = {:?}\n", sql_result);
 
     /*
