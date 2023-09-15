@@ -6,18 +6,12 @@ fn main() {
     let result = get_string_with_two_three();
     println!("result = {:?}\n", result);
 
-    /*
-    let value_predicate = predicate::str::contains(
-        r#"message: \"Error while planning query: SQL error: ParserError"#,
-    );
-    */
-
     let mystr = result.unwrap_or("dog".to_string());
     println!("{:?}", mystr);
 
-    let value_predicate = predicate::str::contains(mystr);
+    let value_predicate = predicate::str::contains(STRING23);
 
-    let gothit = value_predicate.eval(STRING23);
+    let gothit = value_predicate.eval(&mystr);
     println!("parse_error = {:?}", gothit);
 
     if gothit {
