@@ -17,4 +17,14 @@ That will be version 2 of this code :)
 notrace parser.rs > look.txt
 ```
 
-Then copy the notrace binary over to your *rustbin* directory.
+Then
+
+```rust
+rm parser.rs
+mv look.txt parser.rs
+```
+
+### If you modify notrace.rs
+
+Copy the notrace binary over to your *rustbin* directory anytime
+you update notrace.
