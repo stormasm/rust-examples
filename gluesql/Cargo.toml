@@ -4,4 +4,4 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-gluesql = "0.13"
+gluesql = "0.14"
