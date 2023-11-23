@@ -11,6 +11,17 @@ You must go ahead and manually remove the *trace!* statements that span multiple
 
 That will be version 2 of this code :)
 
+### Building this code
+
+```rust
+cargo build
+```
+
+### If you modify notrace.rs
+
+Copy the notrace binary over to your *rustbin* directory anytime
+you update notrace.
+
 ### Usage
 
 ```rust
@@ -23,8 +34,3 @@ Then
 rm parser.rs
 mv look.txt parser.rs
 ```
-
-### If you modify notrace.rs
-
-Copy the notrace binary over to your *rustbin* directory anytime
-you update notrace.
