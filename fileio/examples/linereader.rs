@@ -26,6 +26,7 @@ fn read_file_to_buffer1(filename: String) -> std::io::Result<()> {
     Ok(())
 }
 
+#[allow(dead_code)]
 fn read_file_to_buffer2(filename: String) {
     let f = File::open(filename).unwrap();
     let file = BufReader::new(&f);
@@ -40,6 +41,16 @@ fn read_file_to_buffer2(filename: String) {
     }
 }
 
+fn read_file_to_buffer3(filename: String) {
+    let f = File::open(filename).unwrap();
+    let file = BufReader::new(&f);
+    let mut writer = BufWriter::new(io::stdout());
+    for (_num, line) in file.lines().enumerate() {
+        let l = line.unwrap();
+        writeln!(writer, "{}", l).unwrap();
+    }
+}
+
 fn main() {
     let args: Vec<String> = env::args().collect();
     if args.len() != 2 {
@@ -47,9 +58,5 @@ fn main() {
         process::exit(1);
     }
     let filename = &args[1];
-    println!("In file {}", filename);
-
-    let _contents = read_file_to_buffer2(filename.to_string());
-
-    //println!("With text:\n{}", contents);
+    let _contents = read_file_to_buffer3(filename.to_string());
 }
