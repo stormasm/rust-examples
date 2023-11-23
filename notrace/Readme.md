@@ -17,9 +17,7 @@ That will be version 2 of this code :)
 cargo build
 ```
 
-### If you modify notrace.rs
-
-Copy the notrace binary over to your *rustbin* directory anytime
+Then copy the notrace binary over to your *rustbin* directory anytime
 you update notrace.
 
 ### Usage
