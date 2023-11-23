@@ -3,9 +3,9 @@
 
 Given a file with logging statements like *trace!*
 
-Remove those lines of code.
+This code will remove those lines of code.
 
-This code does not work when the logging code is embedded in multiple lines.
+This code does not work when the logging code spans multiple lines.
 
 You must go ahead and manually remove the *trace!* statements that span multiple lines.
 
