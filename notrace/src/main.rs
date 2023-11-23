@@ -14,13 +14,21 @@ use std::io::BufRead;
 use std::io::BufWriter;
 use std::io::Write;
 
+fn check_log_statement(line: String) -> bool {
+    line.contains("trace")
+}
+
+// Remove the ! operator to see all of the log statements for debugging
+
 fn read_file_to_buffer(filename: String) {
     let f = File::open(filename).unwrap();
     let file = BufReader::new(&f);
     let mut writer = BufWriter::new(io::stdout());
     for (_num, line) in file.lines().enumerate() {
         let l = line.unwrap();
-        writeln!(writer, "{}", l).unwrap();
+        if !check_log_statement(l.clone()) {
+            writeln!(writer, "{}", l).unwrap();
+        }
     }
 }
 
