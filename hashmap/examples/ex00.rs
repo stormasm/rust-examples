@@ -2,6 +2,8 @@
 * This code started out in notrace/main.rs
 */
 
+use std::collections::HashMap;
+
 use std::env;
 use std::process;
 use std::string::String;
@@ -9,24 +11,30 @@ use std::string::String;
 use std::fs::File;
 use std::io::BufReader;
 
-use std::io;
 use std::io::BufRead;
-use std::io::BufWriter;
-use std::io::Write;
 
-fn check_log_statement(line: String) -> bool {
-    line.contains("trace")
-}
-
-fn read_file_to_buffer(filename: String) {
+fn read_file_to_buffer(mut map: HashMap<String, i32>, filename: String) {
     let f = File::open(filename).unwrap();
     let file = BufReader::new(&f);
-    let mut writer = BufWriter::new(io::stdout());
     for (_num, line) in file.lines().enumerate() {
         let l = line.unwrap();
-        if !check_log_statement(l.clone()) {
-            writeln!(writer, "{}", l).unwrap();
+
+        match map.get(&l) {
+            Some(count) => {
+                map.insert(l.to_string(), count + 1);
+            }
+            None => {
+                map.insert(l.to_string(), 1);
+            }
         }
+    }
+}
+
+fn print(map: HashMap<String, i32>) {
+    println!("Occurences..");
+
+    for (key, value) in map.iter() {
+        println!("{key}: {value}");
     }
 }
 
@@ -37,5 +45,7 @@ fn main() {
         process::exit(1);
     }
     let filename = &args[1];
-    let _contents = read_file_to_buffer(filename.to_string());
+    let map = HashMap::new();
+    let _contents = &read_file_to_buffer(map.clone(), filename.to_string());
+    print(map);
 }
