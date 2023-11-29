@@ -28,6 +28,7 @@ fn read_file_to_buffer(mut map: HashMap<String, i32>, filename: String) {
             }
         }
     }
+    print(map)
 }
 
 fn print(map: HashMap<String, i32>) {
@@ -46,6 +47,5 @@ fn main() {
     }
     let filename = &args[1];
     let map = HashMap::new();
-    let _contents = &read_file_to_buffer(map.clone(), filename.to_string());
-    print(map);
+    let _contents = read_file_to_buffer(map, filename.to_string());
 }
