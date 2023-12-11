@@ -1,7 +1,9 @@
 [package]
-name = "reedline"
+name = "reedex"
 version = "0.1.0"
 edition = "2018"
 
 [dependencies]
-reedline = {git = "https://github.com/jntrnr/reedline", branch = "main"}
+reedline = { version = "0.26.0", features = ["bashisms", "sqlite"] }
+crossterm = { version = "0.27.0", features = ["serde"] }
+nu-ansi-term = "0.49.0"
