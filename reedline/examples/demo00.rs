@@ -15,7 +15,6 @@ use {
 };
 
 use reedline::CursorConfig;
-#[cfg(not(any(feature = "sqlite", feature = "sqlite-dynlib")))]
 use reedline::FileBackedHistory;
 
 fn main() -> std::io::Result<()> {
@@ -32,16 +31,6 @@ fn main() -> std::io::Result<()> {
         None
     };
 
-    #[cfg(any(feature = "sqlite", feature = "sqlite-dynlib"))]
-    let history = Box::new(
-        reedline::SqliteBackedHistory::with_file(
-            "history.sqlite3".into(),
-            history_session_id,
-            Some(chrono::Utc::now()),
-        )
-        .map_err(|e| std::io::Error::new(std::io::ErrorKind::Other, e))?,
-    );
-    #[cfg(not(any(feature = "sqlite", feature = "sqlite-dynlib")))]
     let history = Box::new(FileBackedHistory::with_file(50, "history.txt".into())?);
     let commands = vec![
         "test".into(),
