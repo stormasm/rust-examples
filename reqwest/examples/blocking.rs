@@ -1,8 +1,9 @@
 use std::collections::HashMap;
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let resp =
-        reqwest::blocking::get("https://httpbin.org/ip")?.json::<HashMap<String, String>>()?;
+    const API: &str = "https://httpbin.org/ip";
+
+    let resp = reqwest::blocking::get(API)?.json::<HashMap<String, String>>()?;
     println!("{resp:#?}");
     Ok(())
 }
